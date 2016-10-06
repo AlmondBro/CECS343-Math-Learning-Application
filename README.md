@@ -1,0 +1,2 @@
+# CECS353-Math-Learning-Web-Application
+This is the term project for the California State University Class CECS343 (Introduction to Software Engineering). This is a simple web app game that consists of math questions that are to be answered in a particular amount of time. Users can select their level of difficulty on addition, subtraction, multiplication, and division. The game is oriented towards young children, so there is no algebra questions. 
