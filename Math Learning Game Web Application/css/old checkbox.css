@@ -1,0 +1,48 @@
+/*
+label input { */
+  /*visibility: hidden;/* <-- hide the default checkbox, the rest is to hide and alllow tabbing, which display:none prevents. For people who use tabbing, do this: */
+  /* position: absolute; 
+   opacity: 0; 
+   z-index: -1;
+   
+   /* Alternate way that is not supported in some browsers: */
+  /* appearance: none; -webkit-appearance:none; -moz-appearance:none;
+  display:block;
+  height:0;
+  width:0;
+  position:absolute;
+  overflow:hidden;
+}
+label span {/* <-- style the artificial checkbox */
+  height: 50px;
+  width: 50px;
+  border: 1px solid grey;
+  display: inline-block;
+     background-image: url('assets/images/single-green-checkmark-in-red-circle.png');
+}
+input[type=checkbox]:checked + span {/* <-- style its checked state */
+   background-image: url('assets/images/single-green-checkmark-in-red-circle.png');
+   background-size: cover;
+}
+
+/* Add checkbox skin:*/
+input[type="checkbox"]+span { 
+	font: 16pt sans-serif; color: #000; 
+}
+
+/* Add checkbox checked skin: */
+input[type="checkbox"]:checked+span:before {
+	
+}
+
+/* Add focus outline */
+input[type="checkbox"]:focus+span:before { 
+	outline: 1px dotted #aaa;
+}
+
+/* Set Gray Color for disabled checkbox */
+input[type="checkbox"]:disabled+span { color: #999; }
+
+/* Set Hover Shadow on Non-disabled checkbox */
+input[type="checkbox"]:not(:disabled)+span:hover:before {
+  text-shadow: 0 1px 2px #77F; }

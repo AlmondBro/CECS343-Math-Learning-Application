@@ -1,0 +1,238 @@
+html, body { height: 100%;   }
+body {
+		
+	 font-family: normal 16px/1.5 "Asap", arial, sans-serif; 
+    /*
+	font-family: 'Cedarville Cursive', cursive;
+    font-family: 'Butterfly Kids', cursive;
+    font-family: 'Asap', sans-serif;
+	font-size: 18px;
+	*/
+   /* Gradient BG */
+   background-image: url('../assets/images/wood-desktop-bg.jpg');
+   background-size: cover;
+   
+   /* Nice Sky Blue Gradient BG 
+   
+   background: -webkit-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
+
+   background: -moz-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
+
+   background: -ms-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
+
+   background: -o-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
+
+   background: linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
+
+   padding: 3%;
+
+   height: 94%; */
+   
+
+}
+
+.nbLineText {
+	font-family: 'Asap', cursive;
+}
+
+.paper {
+	font-family: 'Caveat', cursive; /* Annie Use Your Telescope */
+	font-size: 1.8em;
+	
+/* Default line-height is 20px */
+  /*width: 50%;
+
+  height: 80%; */
+
+  margin: 0 auto;
+
+  padding: 6px 5px 4px 42px;
+
+  position: relative;
+
+  color: #444;
+
+  line-height: 25px;
+
+  border: 1px solid #d2d2d2;
+
+  background: #fff;
+
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#55bcf3), color-stop(4%, #fff)) 0 4px;
+
+  background: -webkit-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
+
+  background: -moz-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
+
+  background: -ms-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
+
+  background: -o-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
+
+  background: linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
+
+  -webkit-background-size: 100% 25px;
+
+  -moz-background-size: 100% 25px;
+
+  -ms-background-size: 100% 25px;
+
+  -o-background-size: 100% 25px;
+
+  background-size: 100% 25px;
+
+  -webkit-border-radius: 3px;
+
+  -moz-border-radius: 3px;
+
+  border-radius: 3px;
+
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+
+  max-width: 816px;
+
+  height: 1500px; /*1056 px*/
+
+}
+
+.paper::before {
+
+  content: '';
+
+  position: absolute;
+
+  width: 8px; /* default is 4px */
+
+  top: 0;
+
+  left: 30px;
+
+  bottom: 0;
+
+  border: 1px solid;
+
+  border-color: transparent #ef9f9f; /* Default is #ef9f9f */
+
+}
+
+textarea {
+
+  display: block;
+
+  width: 94%;
+
+  margin: 0 auto;
+
+  padding: 3.8% 3%;
+
+  border: none;
+
+  outline: none;
+
+  height: 94%;
+
+  background: transparent;
+
+  line-height: 25px;
+}
+
+.head {
+
+   background-color: #FFF;
+
+   min-height: 124px;
+
+   margin-left: -42px;
+
+   margin-top: -4px;
+}
+
+#welcome-Slogan {
+	font-family: 'Cabin Sketch', cursive;
+	font-size: 50px;
+	color: purple;
+}
+
+			
+input[type="radio"]{
+    display: none;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+input[type="radio"] + label span {   
+    background: url('../assets/images/single-green-checkmark-in-red-circle-only.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+input[type="radio"]:checked + label span {
+    background: url('../assets/images/single-green-checkmark-in-red-circle.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+}
+
+#nameInput {
+	height: 25px; /*24.8px */
+	background-image: url('../assets/images/name-input-background.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	border: none;
+}
+
+
+.chooseDifficulty-Header {
+	margin: 0 auto;
+	padding: 3px;
+}
+
+.mathType-buttonsRow {
+
+}
+
+.mathType-button {
+	border-radius: 25px;
+	text-align: center;
+	display: inline-block;
+	color: white;
+	font-weight: bold;
+	border: 0;
+    width: 180px;
+    height: 77px;
+}
+
+#addition-Button {
+    background: url('../assets/images/Scribble-Button-Blue.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+
+#subtraction-Button {
+    background: url('../assets/images/Scribble-Button-Green.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+
+
+#multiplication-Button {
+    background: url('../assets/images/Scribble-Button-purple.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+
+
+#division-Button {
+    background: url('../assets/images/Scribble-Button-Red.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
