@@ -184,7 +184,7 @@ input[type="radio"]:checked + label span {
 
 #nameInput {
 	height: 25px; /*24.8px */
-	background-image: url('../assets/images/name-input-background.png');
+	background-image: url('../assets/images/name-input-background-lighter-inbetween.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 	border: none;
