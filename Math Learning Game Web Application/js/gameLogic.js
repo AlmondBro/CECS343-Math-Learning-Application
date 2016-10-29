@@ -38,10 +38,12 @@ function initializeGame() {
    a difficulty level hasn't been selected. Returns an error
    prompting the user to do select the said options.  */
 function validateInputs() {
-	if (playerName === "" || playerName === null || 
-		playerName.length == 0 || isEmpty(playerName) == true ) {
-		console.log("Please enter a Name");
+	if (checkPlayerName() == false) {
 		document.getElementById("nameInput-errorMessage").style.display = "inline-block";
+	}  //end if statement
+
+	if (checkPlayerName() == true) {
+		document.getElementById("nameInput-errorMessage").style.display = "none";
 	} //end if statement
 
 	if (checkDifficultyLevel() == false) {
@@ -53,7 +55,7 @@ function validateInputs() {
 		document.getElementById("difficultyLevel-errorMessage").style.display = "none";
 	} //end if-statement
 
-} //end checkInputs() function
+} //end validateInputs() function
 
 /* Checks to see if there is whitespace in an element
    like an input field. Returns true if the field is empty.
@@ -62,6 +64,17 @@ function isEmpty(str){
     return !str.replace(/^\s+/g, '').length; // boolean (`true` if field is empty)
 }
 
+function checkPlayerName() {
+	if (playerName === "" || playerName === null || 
+		playerName.length == 0 || isEmpty(playerName) == true ) {
+		return false;
+	} //end if statement
+	else {
+		return true;
+	}
+} //end checkPlayerName() function
+
+/* Checks if a difficulty level has been selected or not. */
 function checkDifficultyLevel() {
 	var diffLevelRadioButton = document.forms["difficutyLevelForm"]["level-options"];
 	var diffLevelFormLength = diffLevelRadioButton.length;
