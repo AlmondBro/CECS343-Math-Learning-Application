@@ -55,23 +55,29 @@ function validateInputs() {
 		document.getElementById("difficultyLevel-errorMessage").style.display = "none";
 	} //end if-statement
 
+	if (checkPlayerName() == true && checkDifficultyLevel() == true) {
+		console.log("Push state");
+		window.location.href = "/gameRun.html";
+	} //end if-statement
+
 } //end validateInputs() function
 
 /* Checks to see if there is whitespace in an element
    like an input field. Returns true if the field is empty.
 */
 function isEmpty(str){
-    return !str.replace(/^\s+/g, '').length; // boolean (`true` if field is empty)
+    return !str.replace(/^\s+/g, '').length; 
 }
 
 function checkPlayerName() {
-	if (playerName === "" || playerName === null || 
+	if (playerName == "" || playerName === null || 
 		playerName.length == 0 || isEmpty(playerName) == true ) {
 		return false;
 	} //end if statement
-	else {
+	if (playerName !== "" || playerName !== null || 
+		playerName.length != 0 || isEmpty(playerName) == false ) {
 		return true;
-	}
+	} 
 } //end checkPlayerName() function
 
 /* Checks if a difficulty level has been selected or not. */
