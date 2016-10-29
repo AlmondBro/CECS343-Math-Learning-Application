@@ -1,7 +1,7 @@
 /* Get Dynamic Elements */
 
 //Holds the value of the input box where the player types in his name
-var playerName = document.getElementById("nameInput").value;
+//var playerName = document.getElementById("nameInput").value;
 
 //Get the the option chosen for the diffulty level
 //var difficultyLevel = document.querySelector("input[name='level-options']:checked").value;
@@ -100,3 +100,24 @@ function checkDifficultyLevel() {
 		return true;
 	} //end else-statement
 } //end checkDifficultyLevel() option
+
+/*** === TIMER JAVASCRIPT CODE === ***/
+window.onload = function () {
+    timer();
+}
+
+var count = 30;
+var SecondsElapsed = 0;
+
+var counter = setInterval(timer, 1000); //1000ms, so will  run it every 1 second
+
+function timer() {
+  count = count-1;
+  if (count <= 0) {
+     clearInterval(counter);
+     //counter ended, do something here
+     return;
+  } //end if-statement
+
+ document.getElementById("secondsLeft").textContent = count + " secs";
+} //end timer() function
