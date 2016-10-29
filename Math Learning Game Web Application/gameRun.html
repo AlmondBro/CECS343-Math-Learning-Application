@@ -8,93 +8,69 @@
 		<meta name="description" content="This is the term project for the California State University Class CECS343 (Introduction to Software Engineering). This is a simple app game that consists of math questions that are to be answered in a particular amount of time. Users can select their level of difficulty on addition, subtraction, multiplication, and division. The game is oriented towards young children, so there are no algebra questions.">
 		<meta http-equiv="content-language" content="en-us" />
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		
 	</head>
 	
 	<body>
 		<div class="container">
 			<section class="paper">
 				<article class="head">
-					<center><article contenteditable="true"><h3 id="welcome-Slogan">Welcome to </br>Math Learning Game For Kids! :)</h3></article></center>
+					<center><article contenteditable="true"><h3 id="welcome-Slogan">Try to Reach the Goal Points</br> As Fast As You Can! (:</h3></article></center>
 				</article> <!-- /.head -->
 
 				<p>&nbsp;</p> <!-- Breakspace -->
 				
-				<center><form class="row">
-					<div class="col-md-12">
-					<label class="" for="nameInput">Enter your name, player! :</label>
-					<input id="nameInput" type="text" name="name"/></div>
-				</form></center>
-				
-				</br></br>
-				
-			<article contenteditable="true" class="nblineText">Select the level of difficulty you wish to play with: </article>
-				
-				<form><center>
-					<div class="row">
-						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-1" type="radio" name="level-options"  />
-							<label class="level-label" for="level-1">
-								<span></span>Level 1
-							</label>
-						</div <!-- /.col-md-2 col-sm-6 col-xs-12 -->
-				
-	
-						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-2" type="radio" name="level-options"/>
-							<label class="level-label" for="level-2">
-								<span></span>Level 2
-							</label>
-						</div <!-- /.col-md-2 col-sm-6 col-xs-12 -->
-						
-						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-3" type="radio" name="level-options"/>
-							<label class="level-label" for="level-3">
-								<span></span>Level 3
-							</label>
-						</div <!-- /.col-md-2 col-sm-6 col-xs-12 -->
-						
-						
-						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-4" type="radio" name="level-options"/>
-							<label class="level-label" for="level-4">
-								<span></span>Level 4
-							</label>
-						</div <!-- /.col-md-2 col-sm-6 col-xs-12 -->
-						
-						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-5" type="radio" name="level-options"/>
-							<label class="level-label" for="level-5">
-								<span></span>Level 5
-							</label>
-						</div <!-- /.col-md-2 col-sm-6 col-xs-12 -->
-						
-						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-6" type="radio" name="level-options"/>
-							<label class="level-label" for="level-6">
-								<span></span>Level 6
-							</label>
-						</div <!-- /.col-md-2 col-sm-6 col-xs-12 -->
-					</div> <!-- /.row-->
-				</center></form>
-				
-				</br>
-				
-				<article contenteditable="true" class="nblineText">Choose the type of math questions you wish to solve and you're ready to go! :)</article>
-				
-				
-				<center><section class="row mathType-buttonsRow">
-					<div class="col-md-6 col-sm-6">
-						<button class="mathType-button" id="addition-Button" onclick="alert('Addition button click');">Addition (+)</button>
-						<button class="mathType-button" id="subtraction-Button">Subtraction (-)</button>
-						
-					</div <!-- /.col-md-12 col-sm-6-->
+			<center><section class="currentGameInfo row">
+				<div class="col-md-4">
+					<button class="mathType-button" id="levelNumber-Button">Level: <span></span></button>
+				</div> <!-- /.col-md-4 -->
+			
+			<div class="col-md-4">
+					<button class="mathType-button" id="subtraction-Button">Subtraction (-)</button>
+				</div> <!-- /.col-md-4 -->
+			
+				<div class="col-md-4">
+					<div class="timer">
+						<p>Time Left: <span="secondsLeft">75</span></p> 
+					</div> <!-- /.timer -->
+				</div> <!-- /.col-md-4 -->
+			</section></center> <!-- /.currentGameInfo row -->
+			
+			</br></br> <!-- Breakspace -->	
+			
+			<hr class="dottedScissorsLine">
+			</br> <!-- Breakspace -->	
+			
+			<center><div class="row questionGeneratedRow">
+				<div class="col-md-12">
+					<p><span class="title">Question: </span><span id="generatedQuestion">78</span></p>
+				</div> <!-- col-md-12 -->
+			</div></center><!-- row questionGeneratedRow -->
+			
+			<center><form class="row" id="userAnswerForm">
+					<div class="col-md-6">
+						<label id="answerLabel" for="answerInputInputBox">Answer:</label>
+						<input id="answerInputInputBox" type="text" name="answer" rows="5"/>
+					</div> <!-- /.col-md-6 --> 
 					
-					<div class="col-md-6 col-sm-6">
-						<button class="mathType-button" id="multiplication-Button">Multiplication (X)</button>
-						<button class="mathType-button" id="division-Button">Division ( &#xf7; )</button>
-					</div <!-- /.col-md-12 col-sm-6-->
+					<div class="col-md-6 submitAnswerButtonCol">
+						<button class="mathType-button" id="multiplication-Button">Submit Answer</button>
+					</div> <!-- /.col-md-6 --> 	
+					</form> <!-- /.row -->
+			</center>			
 
-				</center></section> <!-- /.row -->
+			</br> <!-- Breakspace -->
+			
+			<center><div class="row questionGeneratedRow">
+				<div class="col-md-6">
+					<p class="title"><span class="title">Current Points: </span> <span id="generatedQuestion">30</span></p>
+				</div> <!-- col-md-12 -->
+			
+				<div class="col-md-6">
+					<p class="title"><span class="title">Goal Points: </span> <span id="generatedQuestion">75</span></p>		
+				</div> <!-- col-md-12 -->
+			</div></center><!-- row questionGeneratedRow -->
+			
 			</section> <!-- /.paper --> 
 		</div> <!-- /.container -->
 	</body>

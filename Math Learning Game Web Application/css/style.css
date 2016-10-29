@@ -190,14 +190,9 @@ input[type="radio"]:checked + label span {
 	border: none;
 }
 
-
 .chooseDifficulty-Header {
 	margin: 0 auto;
 	padding: 3px;
-}
-
-.mathType-buttonsRow {
-
 }
 
 .mathType-button {
@@ -207,32 +202,162 @@ input[type="radio"]:checked + label span {
 	color: white;
 	font-weight: bold;
 	border: 0;
-    width: 180px;
-    height: 77px;
+  width: 180px;
+  height: 77px;
 }
 
 #addition-Button {
-    background: url('../assets/images/Scribble-Button-Blue.png');
+  background: url('../assets/images/Scribble-Button-Blue.png');
 	background-size: 100%;
 	background-repeat:no-repeat;
 }
 
 #subtraction-Button {
-    background: url('../assets/images/Scribble-Button-Green.png');
+  background: url('../assets/images/Scribble-Button-Green.png');
 	background-size: 100%;
 	background-repeat:no-repeat;
 }
 
 
 #multiplication-Button {
-    background: url('../assets/images/Scribble-Button-purple.png');
+  background: url('../assets/images/Scribble-Button-purple.png');
 	background-size: 100%;
 	background-repeat:no-repeat;
 }
 
 
 #division-Button {
-    background: url('../assets/images/Scribble-Button-Red.png');
+  background: url('../assets/images/Scribble-Button-Red.png');
 	background-size: 100%;
 	background-repeat:no-repeat;
+}
+
+/**** gameRun.html specific styles ****/
+.currentGameInfo {
+	font-size: 1.5em;
+}
+
+.questionGeneratedRow {
+	font-size: 2em;
+}
+
+#generatedQuestion {
+	height: 25px; /*24.8px */
+	padding: 10px;
+	margin-top: 30px;
+	margin-left: 15px;
+	background-image: url('../assets/images/name-input-background-lighter-inbetween.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	border: none;
+	border-radius: 12px;
+}
+.submitAnswerButtonCol {
+	padding: 8%;
+}
+
+#levelNumber-Button {
+	background-image: url('../assets/images/Scribble-Button-Red.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+
+#userAnswerForm {
+	padding: 0px 20%;
+}
+
+/* Fix overlap of the user answer form
+ with other elementts on smaller screen sizes */
+@media only screen and (max-width: 357px)  {
+	#userAnswerForm {
+		padding: 0px 20%;
+		margin-top: 20px; 
+	}
+}
+
+#answerInputInputBox {
+	font-size: 3em;
+	width: 150px;
+	height: 100px;
+	border-radius: 15px;
+	
+	background-image: url('../assets/images/name-input-background-lighter-inbetween.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	border: none;
+}	
+
+#answerLabel {
+	display: inline-block;
+}
+
+.title {
+	margin-bottom: 40px;
+	display: inline-block
+}
+
+hr.dottedScissorsLine { 
+  border-top: 3px dashed #2295d2; 
+} 
+hr.dottedScissorsLine:after { 
+  content: '\002702'; 
+  display: inline-block; 
+  position: relative; 
+  top: -12px; 
+  left: 40px; 
+  padding: 0 3px; 
+  background: #2295d2; 
+  color: #b9e3fa; 
+  font-size: 0.75em; 
+  border-radius: 10%;
+}
+
+#nameError {
+  margin-top: 12px;
+}
+
+
+#levelError {
+
+}
+
+#nameInput-errorMessage {
+	display: none;
+
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+	text-align: center;
+	/*display: inline-block; */
+	border: 0;
+  width: 180px;
+  height: 77px;
+
+  background-image: url('../assets/images/Scribble-Button-Red.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#difficultyLevel-errorMessage {
+	display: none;
+
+	color: white;
+  font-weight: bold;
+  border-radius: 25px;
+	text-align: center;
+	/*display: inline-block; */
+	border: 0;
+  width: 180px;
+  height: 77px;
+
+  background-image: url('../assets/images/Scribble-Button-Red.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.error-msg {
+  text-decoration: underline;
+  color: gold;
+  font-weight: thick;
+  font-size: 1.25em;
 }

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>CECS343 Math Learning Game</title>
+		<meta http-equiv="content-language" content="en-us" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<link href="css/style.css" rel="stylesheet" type="text/css">  <!-- Default stylesheet -->
 		<link href="css/bootstrap-grid-system-only.min.css" rel="stylesheet" type="text/css"> <!-- Bootstrap Grid System -->
 	    <link href="https://fonts.googleapis.com/css?family=Asap|Butterfly+Kids|Cedarville+Cursive|Rosario|Annie+Use+Your+Telescope|Cabin+Sketch|Calligraffitti|Caveat|Caveat+Brush" rel="stylesheet" type="text/css">  <!-- Google fonts -->
 		<meta name="description" content="This is the term project for the California State University Class CECS343 (Introduction to Software Engineering). This is a simple app game that consists of math questions that are to be answered in a particular amount of time. Users can select their level of difficulty on addition, subtraction, multiplication, and division. The game is oriented towards young children, so there are no algebra questions.">
-		<meta http-equiv="content-language" content="en-us" />
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+		<title>CECS343 Math Learning Game</title>
 	</head>
 	
 	<body>
@@ -22,14 +23,21 @@
 				<center><form class="row">
 					<div class="col-md-12">
 					<label class="" for="nameInput">Enter your name, player! :</label>
-					<input id="nameInput" type="text" name="name"/></div>
+					<input id="nameInput" type="text" name="name" class="img-responsive" required/></div>
 				</form></center>
 				
-				</br></br>
-				
+				</br> <!-- Breakspace -->
+
+				<!-- Display error message if user does not enter a name -->
+				<center><div class="row" id="nameInput-errorMessage">
+					<div class="col-md-12">
+						<p id="nameError"><span class="error-msg">ERROR:</span> Please enter a name!</p>
+					</div> <!-- /.col-md-12 -->
+				</div> <!-- /.row errorMessage --> </center>
+		
 			<article contenteditable="true" class="nblineText">Select the level of difficulty you wish to play with: </article>
 				
-				<form><center>
+				<form name="difficutyLevelForm"><center>
 					<div class="row">
 						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
 							<input id="level-1" type="radio" name="level-options"  />
@@ -76,6 +84,14 @@
 						</div <!-- /.col-md-2 col-sm-6 col-xs-12 -->
 					</div> <!-- /.row-->
 				</center></form>
+
+				<!-- Display error message if user does not choose a difficulty level -->
+				<center><div class="row" id="difficultyLevel-errorMessage">
+					<div class="col-md-12">
+						<p id="levelError"><span class="error-msg">ERROR:</span> Please choose a difficulty level!</p>
+					</div> <!-- /.col-md-12 -->
+				</div> <!-- /.row #difficultyLevel-errorMessage" --> </center>
+		
 				
 				</br>
 				
@@ -84,7 +100,7 @@
 				
 				<center><section class="row mathType-buttonsRow">
 					<div class="col-md-6 col-sm-6">
-						<button class="mathType-button" id="addition-Button" onclick="alert('Addition button click');">Addition (+)</button>
+						<button class="mathType-button" id="addition-Button">Addition (+)</button>
 						<button class="mathType-button" id="subtraction-Button">Subtraction (-)</button>
 						
 					</div <!-- /.col-md-12 col-sm-6-->
@@ -97,5 +113,7 @@
 				</center></section> <!-- /.row -->
 			</section> <!-- /.paper --> 
 		</div> <!-- /.container -->
+
+		<script src="js/gameLogic.js" language="javascript"></script>	
 	</body>
 </html>
