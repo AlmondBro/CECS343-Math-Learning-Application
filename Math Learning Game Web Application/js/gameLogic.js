@@ -1,10 +1,10 @@
 /* Get Dynamic Elements */
 
-//Holds the value of the input box where the player types in his name
-//var playerName = document.getElementById("nameInput").value;
+//Holds the input box element where the player types in his name
+var playerName = document.getElementById("nameInput");
 
 //Get the the option chosen for the diffulty level
-//var difficultyLevel = document.querySelector("input[name='level-options']:checked").value;
+var difficultyLevel = document.querySelector("input[name='level-options']:checked");
 
 /* Get the type of math buttons */
 var mathTypeButton = document.getElementsByClassName("mathType-button");
@@ -56,29 +56,30 @@ function validateInputs() {
 	} //end if-statement
 
 	if (checkPlayerName() == true && checkDifficultyLevel() == true) {
-		console.log("Push state");
+		console.log("Change to gameRun");
 		window.location.href = "/gameRun.html";
 	} //end if-statement
 
 } //end validateInputs() function
+
+function checkPlayerName() {
+	if (playerName.value == "" || playerName.value === null || 
+		playerName.value.length == 0 || isEmpty(playerName.value) == true ) {
+		return false;
+	} //end if-statement
+	if (playerName.value !== "" || playerName.value !== null || 
+		playerName.value.length != 0 || isEmpty(playerName.value) == false ) {
+		return true;
+	} //end if-statement
+} //end checkPlayerName() function
 
 /* Checks to see if there is whitespace in an element
    like an input field. Returns true if the field is empty.
 */
 function isEmpty(str){
     return !str.replace(/^\s+/g, '').length; 
-}
+} //end isEmpty() function
 
-function checkPlayerName() {
-	if (playerName == "" || playerName === null || 
-		playerName.length == 0 || isEmpty(playerName) == true ) {
-		return false;
-	} //end if statement
-	if (playerName !== "" || playerName !== null || 
-		playerName.length != 0 || isEmpty(playerName) == false ) {
-		return true;
-	} 
-} //end checkPlayerName() function
 
 /* Checks if a difficulty level has been selected or not. */
 function checkDifficultyLevel() {
@@ -102,22 +103,25 @@ function checkDifficultyLevel() {
 } //end checkDifficultyLevel() option
 
 /*** === TIMER JAVASCRIPT CODE === ***/
-window.onload = function () {
-    timer();
+if (document.location == "/gameRun.html") {
+	window.onload = function () {
+    	timer();
+	}
 }
 
-var count = 30;
-var SecondsElapsed = 0;
+var timeLeft = 30;
+var secondsElapsed = 0;
 
-var counter = setInterval(timer, 1000); //1000ms, so will  run it every 1 second
+var counter = setInterval(timer, 1000); //1000ms, so will run it every 1 second
 
 function timer() {
-  count = count-1;
-  if (count <= 0) {
+  timeLeft = timeLeft-1;
+  secondsElapsed = secondsElapsed + 1;
+  if (timeLeft <= 0) {
      clearInterval(counter);
      //counter ended, do something here
      return;
   } //end if-statement
 
- document.getElementById("secondsLeft").textContent = count + " secs";
+ document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "secondsElasped: " + secondsElapsed;
 } //end timer() function
