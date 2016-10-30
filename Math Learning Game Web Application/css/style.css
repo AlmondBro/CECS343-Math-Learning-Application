@@ -219,7 +219,8 @@ input[type="radio"]:checked + label span {
 }
 
 
-#multiplication-Button {
+#multiplication-Button,
+#submitAnswer-Button {
   background: url('../assets/images/Scribble-Button-purple.png');
 	background-size: 100%;
 	background-repeat:no-repeat;

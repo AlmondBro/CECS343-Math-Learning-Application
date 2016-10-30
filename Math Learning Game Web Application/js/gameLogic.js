@@ -206,3 +206,17 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 	} //end switch statement
 	return isUserCorrect;
 } //end userAnswerChecker(number1, number2, mathType, userAnswer) function
+
+
+function getEquation() {
+	var twoNumbers = generateTwoRandomNumbers(difficultyLevel);
+	currentEquation = twoNumbers[0] + " " + getMathType() + " " + twoNumbers[1] + "    = ";
+	return currentEquation;
+} //end getEquation() method
+
+function runActualGame() {
+	console.log("Running actual game");
+}  //end runActualGame(difficultyLevel, mathType)
+
+//Get the submit button element and save it as a variable
+document.getElementById("submitAnswer-Button").addEventListener("click", runActualGame);
