@@ -1,7 +1,7 @@
 /* Get Dynamic Elements */
 
 //Holds the input box element where the player types in his name
-var playerName = document.getElementById("nameInput");
+//var playerName = document.getElementById("nameInput");
 
 //Get the the option chosen for the diffulty level
 var difficultyLevel = document.querySelector("input[name='level-options']:checked");
@@ -38,14 +38,14 @@ function initializeGame() {
    a difficulty level hasn't been selected. Returns an error
    prompting the user to do select the said options.  */
 function validateInputs() {
-	if (checkPlayerName() == false) {
+	/*if (checkPlayerName() == false) {
 		document.getElementById("nameInput-errorMessage").style.display = "inline-block";
 	}  //end if statement
 
 	if (checkPlayerName() == true) {
 		document.getElementById("nameInput-errorMessage").style.display = "none";
-	} //end if statement
-
+	} //end if statement */
+ 
 	if (checkDifficultyLevel() == false) {
 		console.log("Please choose a difficulty level");
 		document.getElementById("difficultyLevel-errorMessage").style.display = "inline-block";
@@ -55,23 +55,23 @@ function validateInputs() {
 		document.getElementById("difficultyLevel-errorMessage").style.display = "none";
 	} //end if-statement
 
-	if (checkPlayerName() == true && checkDifficultyLevel() == true) {
+	if (checkDifficultyLevel() == true) {
 		console.log("Change to gameRun");
 		window.location.href = "/gameRun.html";
-	} //end if-statement
+	} //end if-statement 
 
 } //end validateInputs() function
-
+/*
 function checkPlayerName() {
-	if (playerName.value == "" || playerName.value === null || 
+	if (playerName.value == "" || 
 		playerName.value.length == 0 || isEmpty(playerName.value) == true ) {
 		return false;
 	} //end if-statement
-	if (playerName.value !== "" || playerName.value !== null || 
+	if (playerName.value !== "" || 
 		playerName.value.length != 0 || isEmpty(playerName.value) == false ) {
 		return true;
 	} //end if-statement
-} //end checkPlayerName() function
+} //end checkPlayerName() function */
 
 /* Checks to see if there is whitespace in an element
    like an input field. Returns true if the field is empty.
