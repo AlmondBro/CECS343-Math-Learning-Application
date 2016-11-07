@@ -7,7 +7,6 @@
 		<link href="css/bootstrap-grid-system-only.min.css" rel="stylesheet" type="text/css"> <!-- Bootstrap Grid System -->
 	    <link href="https://fonts.googleapis.com/css?family=Asap|Butterfly+Kids|Cedarville+Cursive|Rosario|Annie+Use+Your+Telescope|Cabin+Sketch|Calligraffitti|Caveat|Caveat+Brush" rel="stylesheet" type="text/css">  <!-- Google fonts -->
 		<meta name="description" content="This is the term project for the California State University Class CECS343 (Introduction to Software Engineering). This is a simple app game that consists of math questions that are to be answered in a particular amount of time. Users can select their level of difficulty on addition, subtraction, multiplication, and division. The game is oriented towards young children, so there are no algebra questions.">
-
 		<title>CECS343 Math Learning Game</title>
 	</head>
 	
@@ -15,7 +14,7 @@
 		<div class="container">
 			<section class="paper">
 				<article class="head">
-					<center><article contenteditable="true"><h3 id="welcome-Slogan">Welcome to </br>Math Learning Game For Kids! :)</h3></article></center>
+					<center><article contenteditable="true"><h3 id="welcome-Slogan">Welcome to <br/>Math Learning Game For Kids! :)</h3></article></center>
 				</article> <!-- /.head -->
 
 				<p>&nbsp;</p> <!-- Breakspace -->
@@ -26,7 +25,7 @@
 					<input id="nameInput" type="text" name="name" class="img-responsive" required/></div>
 				</form></center>
 				
-				</br> <!-- Breakspace -->
+				<br/> <!-- Breakspace -->
 
 				<!-- Display error message if user does not enter a name -->
 				<center><div class="row" id="nameInput-errorMessage">
@@ -37,10 +36,10 @@
 		
 			<article contenteditable="true" class="nblineText">Select the level of difficulty you wish to play with: </article>
 				
-				<form name="difficutyLevelForm"><center>
+				<form name="difficultyLevelForm"><center>
 					<div class="row">
 						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-1" type="radio" name="level-options"  />
+							<input id="level-1" type="radio" name="level-options" value="1"/>
 							<label class="level-label" for="level-1">
 								<span></span>Level 1
 							</label>
@@ -48,14 +47,14 @@
 				
 	
 						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-2" type="radio" name="level-options"/>
+							<input id="level-2" type="radio" name="level-options" value="2"/>
 							<label class="level-label" for="level-2">
 								<span></span>Level 2
 							</label>
 						</div <!-- /.col-md-2 col-sm-6 col-xs-12 -->
 						
 						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-3" type="radio" name="level-options"/>
+							<input id="level-3" type="radio" name="level-options" value="3"/>
 							<label class="level-label" for="level-3">
 								<span></span>Level 3
 							</label>
@@ -63,21 +62,21 @@
 						
 						
 						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-4" type="radio" name="level-options"/>
+							<input id="level-4" type="radio" name="level-options" value="4"/>
 							<label class="level-label" for="level-4">
 								<span></span>Level 4
 							</label>
 						</div <!-- /.col-md-2 col-sm-6 col-xs-12 -->
 						
 						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-5" type="radio" name="level-options"/>
+							<input id="level-5" type="radio" name="level-options" value="5"/>
 							<label class="level-label" for="level-5">
 								<span></span>Level 5
 							</label>
 						</div <!-- /.col-md-2 col-sm-6 col-xs-12 -->
 						
 						<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
-							<input id="level-6" type="radio" name="level-options"/>
+							<input id="level-6" type="radio" name="level-options" value="6"/>
 							<label class="level-label" for="level-6">
 								<span></span>Level 6
 							</label>
@@ -93,7 +92,7 @@
 				</div> <!-- /.row #difficultyLevel-errorMessage" --> </center>
 		
 				
-				</br>
+				<br/>
 				
 				<article contenteditable="true" class="nblineText">Choose the type of math questions you wish to solve and you're ready to go! :)</article>
 				
@@ -114,6 +113,6 @@
 			</section> <!-- /.paper --> 
 		</div> <!-- /.container -->
 
-		<script src="js/menuValidation.js" language="javascript"></script>	
+		<script src="js/menuValidation.js" language="javascript"></script>		
 	</body>
 </html>

@@ -8,6 +8,7 @@
 		<link href="css/bootstrap-grid-system-only.min.css" rel="stylesheet" type="text/css"> <!-- Bootstrap Grid System -->
 	    <link href="https://fonts.googleapis.com/css?family=Asap|Butterfly+Kids|Cedarville+Cursive|Rosario|Annie+Use+Your+Telescope|Cabin+Sketch|Calligraffitti|Caveat|Caveat+Brush" rel="stylesheet" type="text/css">  <!-- Google fonts -->
 		<meta name="description" content="This is the term project for the California State University Class CECS343 (Introduction to Software Engineering). This is a simple app game that consists of math questions that are to be answered in a particular amount of time. Users can select their level of difficulty on addition, subtraction, multiplication, and division. The game is oriented towards young children, so there are no algebra questions.">
+	<script src="js/menuValidation.js" type="text/javascript"></script>			
 	</head>
 	
 	<body>
@@ -42,7 +43,7 @@
 			
 			<center><div class="row questionGeneratedRow">
 				<div class="col-md-12">
-					<p><span class="title">Question: </span><span id="generatedQuestion">78+9</span></p>
+					<p><span class="title">Question: </span><span id="generatedQuestion"></span></p>
 				</div> <!-- col-md-12 -->
 			</div></center><!-- row questionGeneratedRow -->
 			
@@ -53,7 +54,7 @@
 					</div> <!-- /.col-md-6 --> 
 					
 					<div class="col-md-6 submitAnswerButtonCol">
-						<button class="mathType-button" id="multiplication-Button">Submit Answer</button>
+						<button class="mathType-button" id="submitAnswer-Button">Submit Answer</button>
 					</div> <!-- /.col-md-6 --> 	
 					</form> <!-- /.row -->
 			</center>			
@@ -72,6 +73,6 @@
 			
 			</section> <!-- /.paper --> 
 		</div> <!-- /.container -->
-		<script src="js/menuValidation.js" language="javascript"></script>	
+		<script src="js/gameLogic.js" type="text/javascript"></script>		
 	</body>
 </html>

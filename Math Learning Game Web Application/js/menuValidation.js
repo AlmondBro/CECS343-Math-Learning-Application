@@ -1,10 +1,30 @@
 /* Get Dynamic Elements */
 
 //Holds the input box element where the player types in his name
-//var playerName = document.getElementById("nameInput");
+var playerName = document.getElementById("nameInput");
 
 //Get the the option chosen for the diffulty level
-var difficultyLevel = document.querySelector("input[name='level-options']:checked");
+var difficultyLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
+//document.querySelector("input[name='level-options']");
+var difficultyLevelRadioButton_Checked = difficultyLevelRadioButtonChecked();
+
+//document.querySelector("input[name='level-options']:checked"
+
+
+function difficultyLevelRadioButtonChecked() {
+	var difficultyLevelRadioButtonOption;
+	if (checkDifficultyLevel() == false) {
+		difficultyLevelRadioButtonOption = document.forms["difficultyLevelForm"]["level-options"][Math.floor(Math.random() * 4 )];
+	} //end if-statement
+
+	else if (checkDifficultyLevel() == true) {
+		difficultyLevelRadioButtonOption = document.forms["difficultyLevelForm"]["level-options"].checked;
+	} //end else-statement
+
+	return difficultyLevelRadioButtonOption;
+} //end difficultyLevelRadioButtonChecked() function
+
+//var difficultyLevelRadioButton = document.querySelector("input[name='level-options']:checked");
 
 /* Get the type of math buttons */
 var mathTypeButton = document.getElementsByClassName("mathType-button");
@@ -38,14 +58,14 @@ function initializeGame() {
    a difficulty level hasn't been selected. Returns an error
    prompting the user to do select the said options.  */
 function validateInputs() {
-	/*if (checkPlayerName() == false) {
+	if (checkPlayerName() == false) {
 		document.getElementById("nameInput-errorMessage").style.display = "inline-block";
 	}  //end if statement
 
 	if (checkPlayerName() == true) {
 		document.getElementById("nameInput-errorMessage").style.display = "none";
-	} //end if statement */
- 
+	} //end if statement
+
 	if (checkDifficultyLevel() == false) {
 		console.log("Please choose a difficulty level");
 		document.getElementById("difficultyLevel-errorMessage").style.display = "inline-block";
@@ -55,23 +75,24 @@ function validateInputs() {
 		document.getElementById("difficultyLevel-errorMessage").style.display = "none";
 	} //end if-statement
 
-	if (checkDifficultyLevel() == true) {
+	if (checkPlayerName() == true && checkDifficultyLevel() == true) {
 		console.log("Change to gameRun");
-		window.location.href = "/gameRun.html";
-	} //end if-statement 
+		window.location.pathname = "/gameRun.html";
+		//location.href.replace(location.origin,'/gameRun.html')
+	} //end if-statement
 
 } //end validateInputs() function
-/*
+
 function checkPlayerName() {
-	if (playerName.value == "" || 
+	if (playerName.value == "" || playerName.value === null || 
 		playerName.value.length == 0 || isEmpty(playerName.value) == true ) {
 		return false;
 	} //end if-statement
-	if (playerName.value !== "" || 
+	if (playerName.value !== "" || playerName.value !== null || 
 		playerName.value.length != 0 || isEmpty(playerName.value) == false ) {
 		return true;
 	} //end if-statement
-} //end checkPlayerName() function */
+} //end checkPlayerName() function
 
 /* Checks to see if there is whitespace in an element
    like an input field. Returns true if the field is empty.
@@ -83,7 +104,7 @@ function isEmpty(str){
 
 /* Checks if a difficulty level has been selected or not. */
 function checkDifficultyLevel() {
-	var diffLevelRadioButton = document.forms["difficutyLevelForm"]["level-options"];
+	var diffLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
 	var diffLevelFormLength = diffLevelRadioButton.length;
 	var levelChosen = null;
 
@@ -102,121 +123,29 @@ function checkDifficultyLevel() {
 	} //end else-statement
 } //end checkDifficultyLevel() option
 
-/*** === TIMER JAVASCRIPT CODE === ***/
-if (window.location.pathname == "/gameRun.html") {
-	window.onload = function () {
-    	timer();
-	} //end window.onload function
-}  //end if-statement
+function returnDifficultyLevel() {
+	var difficultyLevelNumber;
+	if (difficultyLevelRadioButton_Checked.value == 1) {
+		difficultyLevelNumber = 1;
+	} //end if-statement
 
-var timeLeft = 30;
-var secondsElapsed = 0;
-var counter = setInterval(timer, 1000); //1000ms, so will run it every 1 second
+	if (difficultyLevelRadioButton_Checked.value == 2) {
+		difficultyLevelNumber = 2;
+	} //end if-statement
 
-function timer() {
-  timeLeft = timeLeft-1;
-  secondsElapsed = secondsElapsed + 1;
-  if (timeLeft <= 0) {
-     clearInterval(counter);
-     //counter ended, do something here
-     return;
-  } //end if-statement
+	if (difficultyLevelRadioButton_Checked.value == 3) {
+		difficultyLevelNumber = 3;
+	} //end if-statement
 
- document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "secondsElasped: " + secondsElapsed;
-} //end timer() function
+	if (difficultyLevelRadioButton_Checked.value == 4) {
+		difficultyLevelNumber = 4;
+	} //end if-statement
 
-function generateTwoRandomNumbers(difficultyLevel) {
-	//"Random # (1-10) = ", Math.floor((Math.random() * 10) + 1),
-	//Create an empty array that will hold the generated numbers
-	var generatedNumbers = []; 
-	var number1 = 0;
-	var number2 = 0;
+	if (difficultyLevelRadioButton_Checked.value == 5) {
+		difficultyLevelNumber = 5;
+	} //end if-statement
+	return difficultyLevelNumber;
+}
 
-	switch (difficultyLevel) {
-		case 1:
-			number1 = Math.floor((Math.random() * 10 ) );
-			number2 = Math.floor((Math.random() * 9 ) + 1 );
-			while (number1 < number2) {
-				number1 = Math.floor((Math.random() * 10 ) );
-				number2 = Math.floor((Math.random() * 9 ) + 1 );
-			} //end while loop
-			break;
-
-		case 2:
-			number1 = Math.floor((Math.random() * 90 ) + 10 );
-			number2 = Math.floor((Math.random() * 9 ) + 1 );
-			break;	
-
-		case 3:
-			number1 = Math.floor((Math.random() * 90 ) + 10 );
-			number2 = Math.floor((Math.random() * 90 ) + 10 );
-			while (number1 < number2) {
-				number1 = Math.floor((Math.random() * 90 ) + 10 );
-				number2 = Math.floor((Math.random() * 90 ) + 10 );
-			} //end while loop
-			break;
-
-		case 4:
-			number1 = Math.floor((Math.random() * 900 ) + 100 );
-			number2 = Math.floor((Math.random() * 9 ) + 1 );
-			break;
-
-		case 5:
-			number1 = Math.floor((Math.random() * 900 ) + 100 );
-			number2 = Math.floor((Math.random() * 90) + 10 );
-			break;	
-
-		case 6:
-			number1 = Math.floor((Math.random() * 900 ) + 100 );
-			number1 = Math.floor((Math.random() * 900 ) + 100 );
-			while(number1 < number2) {
-				number1 = Math.floor((Math.random() * 900 ) + 100 );
-				number1 = Math.floor((Math.random() * 900 ) + 100 );
-			} //end while loop
-			break;
-
-		default:
-			number1 = 1;
-			number2 = 1;
-	} //end switch statement
-	generatedNumbers[0] = number1;
-	generatedNumbers[1] = number2;
-	return generatedNumbers;
-} //end generateTwoRandomNumbers(var level) function
-
-function userAnswerChecker(number1, number2, mathType, userAnswer) {
-	var isUserCorrect;
-
-	switch (mathType) {
-		case "+":
-			isUserCorrect = (number1 + number2 == userAnswer);
-			break;
-		case "-":
-			isUserCorrect = (number1 - number2 == userAnswer);
-			break;
-		case "*":
-			isUserCorrect = (number1 * number2 == userAnswer);
-			break;
-		case "/":
-			var answer = number1 / number2;
-			isUserCorrect = ((Math.round(answer * 100) / 100) == userAnswer);
-			break;
-		default:
-			isUserCorrect = false;
-	} //end switch statement
-	return isUserCorrect;
-} //end userAnswerChecker(number1, number2, mathType, userAnswer) function
-
-
-function getEquation() {
-	var twoNumbers = generateTwoRandomNumbers(difficultyLevel);
-	currentEquation = twoNumbers[0] + " " + getMathType() + " " + twoNumbers[1] + "    = ";
-	return currentEquation;
-} //end getEquation() method
-
-function runActualGame() {
-	console.log("Running actual game");
-}  //end runActualGame(difficultyLevel, mathType)
-
-//Get the submit button element and save it as a variable
-document.getElementById("submitAnswer-Button").addEventListener("click", runActualGame);
+//var difficultyLevel = returnDifficultyLevel();
+var difficultyLevel = 3;
