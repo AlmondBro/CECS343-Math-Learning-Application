@@ -1,18 +1,24 @@
 /*** === TIMER JAVASCRIPT CODE === ***/
 if (window.location.pathname == "/gameRun.html") {
 	window.onload = function () {
-    	//timer();
-    	//document.getElementById("generatedQuestion").textContent = getEquation();
+    	timer();
+    	var randomNumbers = generateTwoRandomNumbers(difficultyLevel)
+    	document.getElementById("generatedQuestion").textContent = getEquation(randomNumbers);
+    	ajaxCall(randomNumbers);
 	} //end window.onload function
 }  //end if-statement
 
-
-timer();
-    	document.getElementById("generatedQuestion").textContent = getEquation();
+var difficultyLevel = 2;	
 
 var timeLeft = 30;
 var secondsElapsed = 0;
 var counter = setInterval(timer, 1000); //1000ms, so will run it every 1 second
+var userAnswer = document.getElementById("answerInputInputBox");
+
+
+var randomNumbers = generateTwoRandomNumbers(difficultyLevel);
+var correctAnswer = randomNumbers[0] + randomNumbers[1]; 
+
 
 function timer() {
   timeLeft = timeLeft-1;
@@ -23,7 +29,7 @@ function timer() {
      return;
   } //end if-statement
 
- document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "secondsElasped: " + secondsElapsed;
+ document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "\n" + "secondsElasped: " + secondsElapsed;
 } //end timer() function
 
 function generateTwoRandomNumbers(difficultyLevel) {
@@ -86,39 +92,107 @@ function generateTwoRandomNumbers(difficultyLevel) {
 } //end generateTwoRandomNumbers(var level) function
 
 function userAnswerChecker(number1, number2, mathType, userAnswer) {
-	var isUserCorrect;
-
+	var correctAnswer;
 	switch (mathType) {
 		case "+":
-			isUserCorrect = (number1 + number2 == userAnswer);
+			correctAnswer = number1 + number2;
+			console.log("Correct Answer: " + correctAnswer + "\n");
+			if (userAnswer == correctAnswer) {
+				return true;
+			} else {
+				return false;
+			} //end else statement
 			break;
 		case "-":
-			isUserCorrect = (number1 - number2 == userAnswer);
+			correctAnswer = number1 - number2;
+			console.log("Correct Answer: " + correctAnswer + "\n");
+			if (userAnswer == correctAnswer) {
+				return true;
+			} else {
+				return false;
+			} //end else statement
 			break;
 		case "*":
-			isUserCorrect = (number1 * number2 == userAnswer);
+			correctAnswer = number1 * number2;
+			console.log("Correct Answer: " + correctAnswer + "\n");
+			if (userAnswer == correctAnswer) {
+				return true;
+			} else {
+				return false;
+			} //end else statement
 			break;
 		case "/":
-			var answer = number1 / number2;
-			isUserCorrect = ((Math.round(answer * 100) / 100) == userAnswer);
+			correctAnswer = Math.round(number1 / number2);
+			console.log("Correct Answer: " + correctAnswer + "\n");
+			if (userAnswer == correctAnswer) {
+				return true;
+			} else {
+				return false;
+			} //end else statement
+			//isUserCorrect = ((Math.round(answer * 100) / 100) == userAnswer);
 			break;
-		default:
-			isUserCorrect = false;
+		//default:
+		//	return false;
 	} //end switch statement
-	return isUserCorrect;
+	//return isUserCorrect;
 } //end userAnswerChecker(number1, number2, mathType, userAnswer) function
 
+function answerResult(number1, number2, mathType, userAnswer) {
+	userAnswerChecker(number1, number2, mathType, userAnswer);
+	if (userAnswerChecker(number1, number2, mathType, userAnswer) == true) {
+		console.log("Answer correct" + "\n" + "-----------------------------");
+	} //end if-statement
+	else {
+		console.log("Wrong answer" + "\n" + "-----------------------------");
+	} //end if-statement
+}
 
-function getEquation() {
-	var twoNumbers = generateTwoRandomNumbers(3);
+function getEquation(twoNumbers) {
 	currentEquation = twoNumbers[0] + " " + /*getMathType()*/"+" + " " + twoNumbers[1] + "    = ";
 	return currentEquation;
 } //end getEquation() method
 
 function runActualGame() {
 	console.log("Running actual game");
-	 document.getElementById("generatedQuestion").textContent = getEquation();
+	console.log("Difficulty Level: " + difficultyLevel);
+	
+	var twoNumbers = generateTwoRandomNumbers(difficultyLevel);
+	document.getElementById("generatedQuestion").textContent = getEquation(twoNumbers);
+	if (document.getElementById("generatedQuestion").textContent == "") {
+		document.getElementById("generatedQuestion").textContent = getEquation(twoNumbers);
+	} //end if-statement 
+
+	//answerResult(twoNumbers[0], twoNumbers[1], "+", userAnswer.value);
+	//document.getElementById("generatedQuestion").textContent = getEquation(twoNumbers);
+	if (userAnswer.value != "") {
+		answerResult(twoNumbers[0], twoNumbers[1], "+", userAnswer.value);
+		userAnswer.value = "";
+		document.getElementById("generatedQuestion").textContent = getEquation(twoNumbers);
+	} //end if-satement */ 
 }  //end runActualGame(difficultyLevel, mathType)
 
 //Get the submit button element and save it as a variable
-document.getElementById("submitAnswer-Button").addEventListener("click", runActualGame);
+document.getElementById("submitAnswer-Button").addEventListener("click", ajaxCall);
+
+
+function ajaxCall(randomNumbers) {
+    var request;
+    if (window.XMLHttpRequest) { //Mozilla, Safari, IE7+...
+        request = new XMLHttpRequest();
+    } else { //IE6 & older 
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    request.open('POST', 'gameRun.html', true);
+    request.onreadystatechange = function() {
+        //Check state of request and HTTP status code the response
+        if ((request.readyState === 4) && (request.status === 200)) {
+            console.log(request);
+            //var randomNumbers = generateTwoRandomNumbers(difficultyLevel);
+            runActualGame(randomNumbers);
+           // var modify = getElementById('update');
+            //modify.innerHTML = request.responseText;
+            //or if using XML, use: request.responseXML
+        }
+    }
+    request.send();
+} //end ajaxCall() function 

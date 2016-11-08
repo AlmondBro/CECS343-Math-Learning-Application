@@ -4,13 +4,13 @@
 var playerName = document.getElementById("nameInput");
 
 //Get the the option chosen for the diffulty level
-var difficultyLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
+//var difficultyLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
 //document.querySelector("input[name='level-options']");
-var difficultyLevelRadioButton_Checked = difficultyLevelRadioButtonChecked();
+//var difficultyLevelRadioButton_Checked = difficultyLevelRadioButtonChecked();
 
 //document.querySelector("input[name='level-options']:checked"
 
-
+/*
 function difficultyLevelRadioButtonChecked() {
 	var difficultyLevelRadioButtonOption;
 	if (checkDifficultyLevel() == false) {
@@ -22,7 +22,7 @@ function difficultyLevelRadioButtonChecked() {
 	} //end else-statement
 
 	return difficultyLevelRadioButtonOption;
-} //end difficultyLevelRadioButtonChecked() function
+} //end difficultyLevelRadioButtonChecked() function */
 
 //var difficultyLevelRadioButton = document.querySelector("input[name='level-options']:checked");
 
@@ -66,6 +66,7 @@ function validateInputs() {
 		document.getElementById("nameInput-errorMessage").style.display = "none";
 	} //end if statement
 
+/*
 	if (checkDifficultyLevel() == false) {
 		console.log("Please choose a difficulty level");
 		document.getElementById("difficultyLevel-errorMessage").style.display = "inline-block";
@@ -73,15 +74,39 @@ function validateInputs() {
 
 	if (checkDifficultyLevel() == true) {
 		document.getElementById("difficultyLevel-errorMessage").style.display = "none";
-	} //end if-statement
+	} //end if-statement */
 
-	if (checkPlayerName() == true && checkDifficultyLevel() == true) {
+	if (checkPlayerName() == true) { //&& checkDifficultyLevel() == true) {
 		console.log("Change to gameRun");
 		window.location.pathname = "/gameRun.html";
 		//location.href.replace(location.origin,'/gameRun.html')
+		//ajaxChangePage();
 	} //end if-statement
 
 } //end validateInputs() function
+
+
+function ajaxChangePage() {
+	var request;
+	if (window.XMLHttpRequest) { //Mozilla, Safari, IE7+...
+		request = new XMLHttpRequest();
+	} else { //IE6 & older 
+	request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	request.open('GET', 'gameRun.html', true);
+	
+	request.onreadystatechange = function() {
+	//Check state of request and HTTP status code the response
+		if ((request.readyState===4) && (request.status===200)) {
+			console.log(request);
+			var modify = document.getElementById("container");
+			modify.innerHTML = request.responseText;
+		//or if using XML, use: request.responseXML
+	}
+}
+request.send();
+}
 
 function checkPlayerName() {
 	if (playerName.value == "" || playerName.value === null || 
@@ -103,6 +128,7 @@ function isEmpty(str){
 
 
 /* Checks if a difficulty level has been selected or not. */
+/*
 function checkDifficultyLevel() {
 	var diffLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
 	var diffLevelFormLength = diffLevelRadioButton.length;
@@ -121,8 +147,9 @@ function checkDifficultyLevel() {
 	else {
 		return true;
 	} //end else-statement
-} //end checkDifficultyLevel() option
+} //end checkDifficultyLevel() option */
 
+/*
 function returnDifficultyLevel() {
 	var difficultyLevelNumber;
 	if (difficultyLevelRadioButton_Checked.value == 1) {
@@ -145,7 +172,7 @@ function returnDifficultyLevel() {
 		difficultyLevelNumber = 5;
 	} //end if-statement
 	return difficultyLevelNumber;
-}
+}*/
 
 //var difficultyLevel = returnDifficultyLevel();
-var difficultyLevel = 3;
+//var difficultyLevel = 3;
