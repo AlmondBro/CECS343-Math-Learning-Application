@@ -1,3 +1,4 @@
+
 if (window.location.pathname == "/gameRun.html") {
 	window.onload = function () {
     	timer();
@@ -6,7 +7,7 @@ if (window.location.pathname == "/gameRun.html") {
 }  
 
 var difficultyLevel = 2;	
-document.getElementById("submitAnswer-Button").addEventListener("click", function() {answerResult(num1,num2,mathType,userAnswer)});
+document.getElementById("submitAnswer-Button").addEventListener("click", function() {answerResult(num1,num2,mathType,userAnswer.value)});
 var timeLeft = 30;
 var secondsElapsed = 0;
 var counter = setInterval(timer, 1000); 
@@ -14,7 +15,7 @@ var counter = setInterval(timer, 1000);
 var num1;
 var num2; 
 var mathType = "+";
-var userAnswer;
+var userAnswer= document.getElementById("answerInputInputBox");
 
 
 
@@ -85,7 +86,7 @@ function generateTwoRandomNumbers(difficultyLevel) {
 	generatedNumbers[1] = number2;
     num1 = number1;
     num2 = number2;
-    userAnswer = num1+num2;
+    //userAnswer = num1+num2;
 	return generatedNumbers;
 } 
 
@@ -133,7 +134,7 @@ function getEquation(twoNumbers) {
 function runActualGame() {
 	console.log("Running actual game");
 	console.log("Difficulty Level: " + difficultyLevel);
-    var userAnswer = document.getElementById("answerInputInputBox");
+    //var userAnswer = document.getElementById("answerInputInputBox");
 	if (userAnswer.value != "") {
 		userAnswer.value = "";
 	} 
@@ -155,3 +156,4 @@ function ajaxCall() {
     }
     request.send();
 } 
+
