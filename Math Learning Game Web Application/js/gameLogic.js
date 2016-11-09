@@ -2,9 +2,9 @@
 if (window.location.pathname == "/gameRun.html") {
 	window.onload = function () {
     	timer();
-    	//var randomNumbers = generateTwoRandomNumbers(difficultyLevel)
-    	//document.getElementById("generatedQuestion").textContent = getEquation(randomNumbers);
-    	//ajaxCall();
+    	var randomNumbers = generateTwoRandomNumbers(difficultyLevel)
+    	document.getElementById("generatedQuestion").textContent = getEquation(randomNumbers);
+    	ajaxCall(randomNumbers);
 	} //end window.onload function
 }  //end if-statement
 
@@ -175,7 +175,7 @@ function runActualGame() {
 document.getElementById("submitAnswer-Button").addEventListener("click", ajaxCall);
 
 
-function ajaxCall() {
+function ajaxCall(randomNumbers) {
     var request;
     if (window.XMLHttpRequest) { //Mozilla, Safari, IE7+...
         request = new XMLHttpRequest();
@@ -188,7 +188,7 @@ function ajaxCall() {
         if ((request.readyState === 4) && (request.status === 200)) {
             console.log(request);
             //var randomNumbers = generateTwoRandomNumbers(difficultyLevel);
-            runActualGame();
+            runActualGame(randomNumbers);
            // var modify = getElementById('update');
             //modify.innerHTML = request.responseText;
             //or if using XML, use: request.responseXML
