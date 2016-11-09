@@ -17,12 +17,14 @@ var num2;
 var mathType = "+";
 var userAnswer= document.getElementById("answerInputInputBox");
 
+var currentPointsDOMElement = document.getElementById("currentPoints");
+var currentPoints = 0;
 
 
 function timer() {
   timeLeft--;
   secondsElapsed++;
-  if (timeLeft <= 0) {
+  if (timeLeft < 0) {
      clearInterval(counter);
      return;
   } 
@@ -123,8 +125,21 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 
 function answerResult(number1, number2, mathType, userAnswer) {
     console.log(userAnswerChecker(number1,number2,mathType,userAnswer) ? "Correct" : "Wrong");
-        ajaxCall();
-}
+    if ( userAnswerChecker(number1,number2,mathType,userAnswer) == true ) {
+    	console.log("Correct answer! :)");
+    	currentPoints++;
+    	currentPointsDOMElement.textContent = currentPoints;
+     } 
+ 	else {
+ 		console.log("Incorrect answe :(");
+ 		currentPoints--;
+ 		if (currentPoints <= 0 ) {
+ 			currentPoints = 0;
+ 		} //end if-statement
+ 		currentPointsDOMElement.textContent = currentPoints;
+ 	}      
+    ajaxCall();
+} //end answerResult(number1, number2, mathType, userAnswer) method.
 
 function getEquation(twoNumbers) {
 	var currentEquation = twoNumbers[0] + " " + /*getMathType()*/"+" + " " + twoNumbers[1] + "    = ";
