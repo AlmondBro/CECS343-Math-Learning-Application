@@ -6,20 +6,21 @@ var playerName = document.getElementById("nameInput");
 //Get the the option chosen for the diffulty level
 var difficultyLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
 //document.querySelector("input[name='level-options']");
-var difficultyLevelRadioButton_Checked = difficultyLevelRadioButtonChecked();
+var difficultyLevelRadioButton_Checked = document.querySelector('input[name="level-options"]:checked');
+//difficultyLevelRadioButtonChecked();
 
 //document.querySelector("input[name='level-options']:checked"
 
-
 function difficultyLevelRadioButtonChecked() {
 	var difficultyLevelRadioButtonOption;
-	if (checkDifficultyLevel() == false) {
+	/*if (checkDifficultyLevel() == false) {
 		difficultyLevelRadioButtonOption = document.forms["difficultyLevelForm"]["level-options"][Math.floor(Math.random() * 4 )];
-	} //end if-statement
+	} //end if-statement*/
 
-	else if (checkDifficultyLevel() == true) {
-		difficultyLevelRadioButtonOption = document.forms["difficultyLevelForm"]["level-options"].checked;
-	} //end else-statement
+	/*else if (checkDifficultyLevel() == true) { */
+		difficultyLevelRadioButtonOption = document.querySelector('input[name="level-options"]:checked');
+		// document.forms["difficultyLevelForm"]["level-options"].checked;
+	//} //end else-statement
 
 	return difficultyLevelRadioButtonOption;
 } //end difficultyLevelRadioButtonChecked() function
@@ -46,6 +47,7 @@ var divisionButton = document.getElementById("division-Button");
 							  	e.addEventListener('click',initializeGame,false)
 							  } //end function(e)
 				);
+
 
 //mathTypeButton.addEventListener("click", initializeGame);
 
@@ -77,11 +79,22 @@ function validateInputs() {
 
 	if (checkPlayerName() == true && checkDifficultyLevel() == true) {
 		console.log("Change to gameRun");
+		var userInfo = {}; 
+		userInfo.userName = playerName.value;
+		userInfo.difficultyLevel =  document.querySelector('input[name="level-options"]:checked').value;
+		//difficultyLevelRadioButton_Checked.value;
+		userInfo.mathType = "+";
+
+		localStorage.setItem("userInfo", JSON.stringify(userInfo) );
 		window.location.pathname = "/gameRun.html";
-		//location.href.replace(location.origin,'/gameRun.html')
+		//location.href.replace(location.origin,'/gameRun.html');
 	} //end if-statement
 
 } //end validateInputs() function
+
+function getMathType() {
+
+} //end getMathType() function
 
 function checkPlayerName() {
 	if (playerName.value == "" || playerName.value === null || 
@@ -124,28 +137,6 @@ function checkDifficultyLevel() {
 } //end checkDifficultyLevel() option
 
 function returnDifficultyLevel() {
-	var difficultyLevelNumber;
-	if (difficultyLevelRadioButton_Checked.value == 1) {
-		difficultyLevelNumber = 1;
-	} //end if-statement
-
-	if (difficultyLevelRadioButton_Checked.value == 2) {
-		difficultyLevelNumber = 2;
-	} //end if-statement
-
-	if (difficultyLevelRadioButton_Checked.value == 3) {
-		difficultyLevelNumber = 3;
-	} //end if-statement
-
-	if (difficultyLevelRadioButton_Checked.value == 4) {
-		difficultyLevelNumber = 4;
-	} //end if-statement
-
-	if (difficultyLevelRadioButton_Checked.value == 5) {
-		difficultyLevelNumber = 5;
-	} //end if-statement
-	return difficultyLevelNumber;
+	return difficultyLevelRadioButton_Checked.value;	
 }
 
-//var difficultyLevel = returnDifficultyLevel();
-var difficultyLevel = 3;
