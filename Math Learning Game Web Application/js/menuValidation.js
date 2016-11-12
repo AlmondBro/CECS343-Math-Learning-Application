@@ -25,10 +25,14 @@ function difficultyLevelRadioButtonChecked() {
 	return difficultyLevelRadioButtonOption;
 } //end difficultyLevelRadioButtonChecked() function
 
+//document.querySelector(".mathType-Button");
+
 //var difficultyLevelRadioButton = document.querySelector("input[name='level-options']:checked");
 
 /* Get the type of math buttons */
+//General math button element(s) stored into a variable
 var mathTypeButton = document.getElementsByClassName("mathType-button");
+
 var additionButton = document.getElementById("addition-Button");
 var subtractionButton = document.getElementById("subtraction-Button");
 var multiplicationButton = document.getElementById("multiplication-Button");
@@ -43,15 +47,25 @@ var divisionButton = document.getElementById("division-Button");
 		Syntax: [].forEach.call(nodeList,function(e){e.addEventListener('click',callback,false)})
 		Source: https://stackoverflow.com/questions/12362256/addeventlistener-on-nodelist
 */
-[].forEach.call(mathTypeButton, function(e) {
+/*[].forEach.call(mathTypeButton, function(e) {
 							  	e.addEventListener('click',initializeGame,false)
 							  } //end function(e)
 				);
+*/
 
+
+for (var i = 0; i < mathTypeButton.length; i++ ) {
+	
+	mathTypeButton[i].addEventListener("click", initializeGame(mathTypeButton[i].value), false);
+} //end for loop
+
+
+var userInfo = {};
 
 //mathTypeButton.addEventListener("click", initializeGame);
 
-function initializeGame() {
+function initializeGame(mathTypeButtonValue) {
+	userInfo.mathType = 5;
 	console.log("A Math Type Button Was Clicked.");
     validateInputs(); 
 } //end initializeGame() button
@@ -79,22 +93,30 @@ function validateInputs() {
 
 	if (checkPlayerName() == true && checkDifficultyLevel() == true) {
 		console.log("Change to gameRun");
-		var userInfo = {}; 
+		//var userInfo = {}; 
+		/*
 		userInfo.userName = playerName.value;
 		userInfo.difficultyLevel =  document.querySelector('input[name="level-options"]:checked').value;
-		//difficultyLevelRadioButton_Checked.value;
-		userInfo.mathType = "+";
+		*/
 
-		localStorage.setItem("userInfo", JSON.stringify(userInfo) );
-		window.location.pathname = "/gameRun.html";
+		//difficultyLevelRadioButton_Checked.value;
+		//userInfo.mathType = mathTypeButton.value;
+
+	    userInfo.userName = playerName.value;
+		userInfo.difficultyLevel =  document.querySelector('input[name="level-options"]:checked').value;
+		//userInfo.mathType =  mathTypeButton.id
+	;	localStorage.setItem("userInfo", JSON.stringify(userInfo) );
+
+		console.log(userInfo);		
+		console.log(userInfo.id);
+		console.log("Math-Button ID: " + mathTypeButton.id );
+
+		//window.location.pathname = "/gameRun.html";
+
 		//location.href.replace(location.origin,'/gameRun.html');
 	} //end if-statement
 
 } //end validateInputs() function
-
-function getMathType() {
-
-} //end getMathType() function
 
 function checkPlayerName() {
 	if (playerName.value == "" || playerName.value === null || 

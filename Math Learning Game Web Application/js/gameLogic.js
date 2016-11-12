@@ -2,11 +2,15 @@
 if (window.location.pathname == "/gameRun.html") {
 	window.onload = function () {
 		console.log(user);
+		console.log("Swag");
     	timer();
     	ajaxCall();
     	console.log("User.difficultyLevel: " + user.difficultyLevel);
-	} 
-}  
+
+    	/* Load the number of the difficulty level chosen into the levelNumber button */
+    	document.getElementById("levelNumber").textContent = difficultyLevelNumber;
+	} //end window.onload function
+}  //end if-statement
 
 var userInfo = localStorage.getItem("userInfo");
 var user = JSON.parse(userInfo);	
@@ -16,7 +20,6 @@ document.getElementById("submitAnswer-Button").addEventListener("click", functio
 var timeLeft = 30;
 var secondsElapsed = 0;
 var counter = setInterval(timer, 1000); 
-//var userAnswer = document.getElementById("answerInputInputBox");
 var num1;
 var num2; 
 var mathType = "+";
@@ -164,10 +167,9 @@ function getEquation(twoNumbers) {
 function runActualGame() {
 	console.log("Running actual game");
 	console.log("Difficulty Level: " + difficultyLevelNumber);
-    //var userAnswer = document.getElementById("answerInputInputBox");
 	if (userAnswer.value != "") {
 		userAnswer.value = "";
-	} 
+	} //end if-statement
 }
 
 function ajaxCall() {
