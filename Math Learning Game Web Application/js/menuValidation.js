@@ -25,55 +25,63 @@ function difficultyLevelRadioButtonChecked() {
 	return difficultyLevelRadioButtonOption;
 } //end difficultyLevelRadioButtonChecked() function
 
-//document.querySelector(".mathType-Button");
-
 //var difficultyLevelRadioButton = document.querySelector("input[name='level-options']:checked");
 
 /* Get the type of math buttons */
-//General math button element(s) stored into a variable
 var mathTypeButton = document.getElementsByClassName("mathType-button");
-
 var additionButton = document.getElementById("addition-Button");
 var subtractionButton = document.getElementById("subtraction-Button");
 var multiplicationButton = document.getElementById("multiplication-Button");
 var divisionButton = document.getElementById("division-Button");
 
-/* Call the initializeGame() method when any of the math-Type buttons are clicked. 
-	This code has to be utilized for the mathTypeButton variable returns a NodeList 
-	object which does not work in an eventListener. An eventListener requires 
-	a Node, and not a NodeList which the document.getElementsByClassName returns.
-	This is a workaround for this, converting the NodeList to a Node. 
+/* Call the initializeGame() method when any of the math-Type buttons are clicked.  */
+/*for (var i = 0; i < mathTypeButton.length; i++) {
+	//Using an inline function, pass the node down to later get its value.
+	 //  Its value contains the operator for the type of math that is chosen. 
 
-		Syntax: [].forEach.call(nodeList,function(e){e.addEventListener('click',callback,false)})
-		Source: https://stackoverflow.com/questions/12362256/addeventlistener-on-nodelist
-*/
-/*[].forEach.call(mathTypeButton, function(e) {
-							  	e.addEventListener('click',initializeGame,false)
-							  } //end function(e)
-				);
-*/
+	 var selectedButton = mathTypeButton[i];
+	mathTypeButton[i].addEventListener('click', function(event) {
+		console.log("Swag Value: " + selectedButton.value);
+		initializeGame(selectedButton);
+	} //end inline (click) function
+	); //end addEventListener 
+
+	//mathTypeButton[i].addEventListener("click", initializeGame(mathTypeButton[i]), false);
+} //end for loop */
+
+additionButton.addEventListener('click', function(event) {
+		console.log("Swag Value: " + additionButton.value);
+		initializeGame(additionButton);
+	}); //end inline (click) function
+
+subtractionButton.addEventListener('click', function(event) {
+		console.log("Swag Value: " + subtractionButton.value);
+		initializeGame(subtractionButton);
+	}); //end inline (click) function
+
+multiplicationButton.addEventListener('click', function(event) {
+		console.log("Swag Value: " + multiplicationButton.value);
+		initializeGame(multiplicationButton);
+	}); //end inline (click) function
+
+divisionButton.addEventListener('click', function(event) {
+		console.log("Swag Value: " + divisionButton.value);
+		initializeGame(divisionButton);
+	}); //end inline (click) function
 
 
-for (var i = 0; i < mathTypeButton.length; i++ ) {
-	
-	mathTypeButton[i].addEventListener("click", initializeGame(mathTypeButton[i].value), false);
-} //end for loop
-
-
-var userInfo = {};
-
-//mathTypeButton.addEventListener("click", initializeGame);
-
-function initializeGame(mathTypeButtonValue) {
-	userInfo.mathType = 5;
+function initializeGame(mathTypeSpecificButton) {
+	var mathTypeValue = mathTypeSpecificButton;
 	console.log("A Math Type Button Was Clicked.");
-    validateInputs(); 
+    validateInputs(mathTypeValue); 
 } //end initializeGame() button
+
 
 /* Check to see if the player name input box is empty and/or
    a difficulty level hasn't been selected. Returns an error
    prompting the user to do select the said options.  */
-function validateInputs() {
+function validateInputs(mathTypeSpecificButton) {
+	var mathTypeSwag = mathTypeSpecificButton;
 	if (checkPlayerName() == false) {
 		document.getElementById("nameInput-errorMessage").style.display = "inline-block";
 	}  //end if statement
@@ -93,25 +101,17 @@ function validateInputs() {
 
 	if (checkPlayerName() == true && checkDifficultyLevel() == true) {
 		console.log("Change to gameRun");
-		//var userInfo = {}; 
-		/*
+		var userInfo = {}; 
 		userInfo.userName = playerName.value;
 		userInfo.difficultyLevel =  document.querySelector('input[name="level-options"]:checked').value;
-		*/
-
 		//difficultyLevelRadioButton_Checked.value;
-		//userInfo.mathType = mathTypeButton.value;
+		userInfo.mathType = mathTypeSwag.value;
 
-	    userInfo.userName = playerName.value;
-		userInfo.difficultyLevel =  document.querySelector('input[name="level-options"]:checked').value;
-		//userInfo.mathType =  mathTypeButton.id
-	;	localStorage.setItem("userInfo", JSON.stringify(userInfo) );
+		localStorage.setItem("userInfo", JSON.stringify(userInfo) );
+		window.location.pathname = "/gameRun.html";
 
-		console.log(userInfo);		
-		console.log(userInfo.id);
-		console.log("Math-Button ID: " + mathTypeButton.id );
-
-		//window.location.pathname = "/gameRun.html";
+		console.log("Math Value of button: " + mathTypeSwag.value);
+		console.log(typeof mathTypeSwag.value);
 
 		//location.href.replace(location.origin,'/gameRun.html');
 	} //end if-statement

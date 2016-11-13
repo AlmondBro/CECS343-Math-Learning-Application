@@ -2,32 +2,49 @@
 if (window.location.pathname == "/gameRun.html") {
 	window.onload = function () {
 		console.log(user);
-		console.log("Swag");
     	timer();
     	ajaxCall();
-    	console.log("User.difficultyLevel: " + user.difficultyLevel);
-
-    	/* Load the number of the difficulty level chosen into the levelNumber button */
     	document.getElementById("levelNumber").textContent = difficultyLevelNumber;
-	} //end window.onload function
+    	getMathTypeButton(); 
+    	console.log("User.difficultyLevel: " + user.difficultyLevel);
+    	console.log("Type of math selected: " + mathType);
+	} //end onload inline function
 }  //end if-statement
 
 var userInfo = localStorage.getItem("userInfo");
 var user = JSON.parse(userInfo);	
 var difficultyLevelNumber = user.difficultyLevel;	
+var mathType = user.mathType;
 
 document.getElementById("submitAnswer-Button").addEventListener("click", function() {answerResult(num1,num2,mathType,userAnswer.value)});
 var timeLeft = 30;
 var secondsElapsed = 0;
 var counter = setInterval(timer, 1000); 
+//var userAnswer = document.getElementById("answerInputInputBox");
 var num1;
 var num2; 
-var mathType = "+";
 var userAnswer= document.getElementById("answerInputInputBox");
 
 var currentPointsDOMElement = document.getElementById("currentPoints");
 var currentPoints = 0;
 
+function getMathTypeButton() {
+	if (mathType == "+") {
+		document.getElementById("addition-Button2").style.display = "inline-block";
+	} //end if-statement
+
+	if (mathType == "-") {
+		document.getElementById("subtraction-Button2").style.display = "inline-block";
+	} //end if-statement
+
+	if (mathType == "*") {
+		document.getElementById("multiplication-Button2").style.display = "inline-block";
+	} //end if-statement
+
+	if (mathType == "/") {
+		document.getElementById("division-Button2").style.display = "inline-block";
+	} //end if-statement
+} //end getMathTypeButton()
 
 function timer() {
   timeLeft--;
@@ -57,10 +74,10 @@ function generateTwoRandomNumbers(difficultyLevel) {
 		case "1":
 			number1 = Math.floor((Math.random() * 10 ) );
 			number2 = Math.floor((Math.random() * 9 ) + 1 );
-			/*while (number1 < number2) {
+			while (number1 < number2) {
 				number1 = Math.floor((Math.random() * 10 ) );
 				number2 = Math.floor((Math.random() * 9 ) + 1 );
-			}  */
+			}  
 			break;
 
 		case "2":
@@ -71,10 +88,10 @@ function generateTwoRandomNumbers(difficultyLevel) {
 		case "3":
 			number1 = Math.floor((Math.random() * 90 ) + 10 );
 			number2 = Math.floor((Math.random() * 90 ) + 10 );
-			/*while (number1 < number2) {
+			while (number1 < number2) {
 				number1 = Math.floor((Math.random() * 90 ) + 10 );
 				number2 = Math.floor((Math.random() * 90 ) + 10 );
-			} */
+			} 
 			break;
 
 		case "4":
@@ -90,10 +107,10 @@ function generateTwoRandomNumbers(difficultyLevel) {
 		case "6":
 			number1 = Math.floor((Math.random() * 900 ) + 100 );
 			number2 = Math.floor((Math.random() * 900 ) + 100 );
-			/*while(number1 < number2) {
+			while(number1 < number2) {
 				number1 = Math.floor((Math.random() * 900 ) + 100 );
 				number1 = Math.floor((Math.random() * 900 ) + 100 );
-			}  */
+			}  
 			break;
 
 		/*default:
@@ -140,7 +157,7 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 } 
 
 function answerResult(number1, number2, mathType, userAnswer) {
-    console.log(userAnswerChecker(number1,number2,mathType,userAnswer) ? "Correct" : "Wrong");
+    //console.log(userAnswerChecker(number1,number2,mathType,userAnswer) ? "Correct" : "Wrong");
     if ( userAnswerChecker(number1,number2,mathType,userAnswer) == true ) {
     	console.log("Correct answer! :)");
     	currentPoints++;
@@ -148,7 +165,7 @@ function answerResult(number1, number2, mathType, userAnswer) {
     	timeLeft += 8;
      } 
  	else {
- 		console.log("Incorrect answer :(");
+ 		console.log("Incorrect answer :(" + "\n");
  		currentPoints--;
  		if (currentPoints <= 0 ) {
  			currentPoints = 0;
@@ -160,17 +177,30 @@ function answerResult(number1, number2, mathType, userAnswer) {
 } //end answerResult(number1, number2, mathType, userAnswer) method.
 
 function getEquation(twoNumbers) {
-	var currentEquation = twoNumbers[0] + " " + /*getMathType()*/"+" + " " + twoNumbers[1] + "    = ";
+	var currentEquation = twoNumbers[0] + " " +  getMathType() + " " + twoNumbers[1] + "    = ";
 	return currentEquation;
 } 
 
 function runActualGame() {
-	console.log("Running actual game");
-	console.log("Difficulty Level: " + difficultyLevelNumber);
+	console.log("Running actual game function. Clears answer input when changing equation" + "\n" + "\n");
 	if (userAnswer.value != "") {
 		userAnswer.value = "";
 	} //end if-statement
-}
+} //end runActualGame() function
+
+function getMathType() {
+	if (mathType == "*") {
+		return "*";
+	} //end if-statement
+
+	else if (mathType == "/") {
+		return "/";
+	} //end if-statement
+
+	else {
+		return mathType;
+	} //end else-statement
+} //end getMathType()
 
 function ajaxCall() {
     var request;
@@ -184,8 +214,8 @@ function ajaxCall() {
         if ((request.readyState === 4) && (request.status === 200)) {
             document.getElementById("generatedQuestion").textContent = getEquation(generateTwoRandomNumbers(difficultyLevelNumber));
             runActualGame();
-        }
-    }
+        } //end if-statement
+    } //end request.onreadystatechange inline function
     request.send();
-} 
+} //end ajaxCall() function
 

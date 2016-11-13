@@ -205,7 +205,7 @@ input[type="radio"]:checked + label span {
 .mathType-button {
 	border-radius: 25px;
 	text-align: center;
-	display: inline-block;
+	display: inline-block; 
 	color: white;
 	font-weight: bold;
 	border: 0;
@@ -225,9 +225,7 @@ input[type="radio"]:checked + label span {
 	background-repeat:no-repeat;
 }
 
-
-#multiplication-Button,
-#submitAnswer-Button {
+#multiplication-Button {
   background: url('../assets/images/Scribble-Button-purple.png');
 	background-size: 100%;
 	background-repeat:no-repeat;
@@ -239,6 +237,46 @@ input[type="radio"]:checked + label span {
 	background-size: 100%;
 	background-repeat:no-repeat;
 }
+
+#submitAnswer-Button {
+  background: url('../assets/images/Scribble-Button-purple.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+
+
+/* gameRun.html Math Type Buttons */
+#addition-Button2 {
+  background: url('../assets/images/Scribble-Button-Blue.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+
+  display: none;
+}
+
+#subtraction-Button2 {
+  background: url('../assets/images/Scribble-Button-Green.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+
+  display: none;
+}
+
+#multiplication-Button2 {
+  display: none;
+  background: url('../assets/images/Scribble-Button-purple.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+}
+
+#division-Button2 {
+  background: url('../assets/images/Scribble-Button-Red.png');
+	background-size: 100%;
+	background-repeat:no-repeat;
+
+  display: none;
+}
+
 
 /**** gameRun.html specific styles ****/
 .currentGameInfo {
