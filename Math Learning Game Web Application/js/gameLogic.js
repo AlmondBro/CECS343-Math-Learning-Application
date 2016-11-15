@@ -72,56 +72,63 @@ function generateTwoRandomNumbers(difficultyLevel) {
 
 	switch (difficultyLevel) {
 		case "1":
-			number1 = Math.floor((Math.random() * 10 ) );
-			number2 = Math.floor((Math.random() * 9 ) + 1 );
-			while (number1 < number2) {
-				number1 = Math.floor((Math.random() * 10 ) );
-				number2 = Math.floor((Math.random() * 9 ) + 1 );
+			number1 = Math.floor((Math.random() * 21 ) );
+			number2 = Math.floor((Math.random() * 19 ) + 1 );
+			while ((number1 < number2) || (number1%number2 != 0)) {
+				number1 = Math.floor((Math.random() * 21 ) );
+				number2 = Math.floor((Math.random() * 19 ) + 1 );
 			}  
 			break;
 
 		case "2":
-			number1 = Math.floor((Math.random() * 90 ) + 10 );
-			number2 = Math.floor((Math.random() * 9 ) + 1 );
+			number1 = Math.floor((Math.random() * 80 ) + 20 );
+			number2 = Math.floor((Math.random() * 19 ) + 1 );
+            while(number1 % number2 != 0){
+                number1 = Math.floor((Math.random() * 80 ) + 20 );
+		      	number2 = Math.floor((Math.random() * 19 ) + 1 );
+            }
 			break;	
 
 		case "3":
-			number1 = Math.floor((Math.random() * 90 ) + 10 );
-			number2 = Math.floor((Math.random() * 90 ) + 10 );
-			while (number1 < number2) {
-				number1 = Math.floor((Math.random() * 90 ) + 10 );
-				number2 = Math.floor((Math.random() * 90 ) + 10 );
+			number1 = Math.floor((Math.random() * 290 ) + 10 );
+			number2 = Math.floor((Math.random() * 49 ) + 1 );
+			while ((number1 < number2) || (number1 % number2 != 0)) {
+				number1 = Math.floor((Math.random() * 290 ) + 10 );
+				number2 = Math.floor((Math.random() * 49 ) + 1 );
 			} 
 			break;
 
 		case "4":
-			number1 = Math.floor((Math.random() * 900 ) + 100 );
-			number2 = Math.floor((Math.random() * 9 ) + 1 );
+			number1 = Math.floor((Math.random() * 490 ) + 10 );
+			number2 = Math.floor((Math.random() * 69 ) + 20 );
+            while(number1 % number2 != 0){
+                number1 = Math.floor((Math.random() * 490 ) + 10 );
+		      	number2 = Math.floor((Math.random() * 69 ) + 20 );
+            }
 			break;
 
 		case "5":
 			number1 = Math.floor((Math.random() * 900 ) + 100 );
-			number2 = Math.floor((Math.random() * 90) + 10 );
+			number2 = Math.floor((Math.random() * 49) + 1 );
+            while (number1 % number2 != 0){
+                number1 = Math.floor((Math.random() * 900 ) + 100 );
+		      	number2 = Math.floor((Math.random() * 49) + 1 );
+            }
 			break;	
 
 		case "6":
 			number1 = Math.floor((Math.random() * 900 ) + 100 );
-			number2 = Math.floor((Math.random() * 900 ) + 100 );
-			while(number1 < number2) {
+			number2 = Math.floor((Math.random() * 500 ) + 20 );
+			while((number1 < number2) || (number1 % number2 != 0)) {
 				number1 = Math.floor((Math.random() * 900 ) + 100 );
-				number1 = Math.floor((Math.random() * 900 ) + 100 );
+				number2 = Math.floor((Math.random() * 500 ) + 20 );
 			}  
 			break;
-
-		/*default:
-			number1 = 3;
-			number2 = 1; */
 	} 
 	generatedNumbers[0] = number1;
 	generatedNumbers[1] = number2;
     num1 = number1;
     num2 = number2;
-    //userAnswer = num1+num2;
 	return generatedNumbers;
 } 
 
@@ -148,7 +155,7 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 			isCorrect = userAnswer == correctAnswer;
 			break;
 		case "/":
-			correctAnswer = Math.round(number1 / number2 * 100) / 100;
+			correctAnswer = number1 / number2;
 			console.log("Correct Answer: " + correctAnswer + "\n");
 			isCorrect = userAnswer == correctAnswer;
 			break;
@@ -157,7 +164,6 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 } 
 
 function answerResult(number1, number2, mathType, userAnswer) {
-    //console.log(userAnswerChecker(number1,number2,mathType,userAnswer) ? "Correct" : "Wrong");
     if (userAnswerChecker(number1,number2,mathType,userAnswer)) {
     	console.log("Correct answer! :)");
         difficultyLevelNumber = parseInt(difficultyLevelNumber);
