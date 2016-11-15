@@ -54,7 +54,7 @@ function timer() {
      return;
   } 
 
- document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "\n" + "secondsElasped: " + secondsElapsed;
+ document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "\n" + "Seconds elasped: " + secondsElapsed;
 } 
 
 
@@ -148,7 +148,7 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 			isCorrect = userAnswer == correctAnswer;
 			break;
 		case "/":
-			correctAnswer = Math.round(number1 / number2);
+			correctAnswer = Math.round(number1 / number2 * 100) / 100;
 			console.log("Correct Answer: " + correctAnswer + "\n");
 			isCorrect = userAnswer == correctAnswer;
 			break;
@@ -158,20 +158,21 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 
 function answerResult(number1, number2, mathType, userAnswer) {
     //console.log(userAnswerChecker(number1,number2,mathType,userAnswer) ? "Correct" : "Wrong");
-    if ( userAnswerChecker(number1,number2,mathType,userAnswer) == true ) {
+    if (userAnswerChecker(number1,number2,mathType,userAnswer)) {
     	console.log("Correct answer! :)");
-    	currentPoints++;
+        difficultyLevelNumber = parseInt(difficultyLevelNumber);
+    	currentPoints += (6 * difficultyLevelNumber + (difficultyLevelNumber + 2));
+        difficultyLevelNumber = difficultyLevelNumber.toString();
+        console.log(currentPoints);
     	currentPointsDOMElement.textContent = currentPoints;
-    	timeLeft += 8;
      } 
  	else {
  		console.log("Incorrect answer :(" + "\n");
- 		currentPoints--;
+ 		currentPoints -= 4 * difficultyLevelNumber;
  		if (currentPoints <= 0 ) {
  			currentPoints = 0;
  		} //end if-statement
  		currentPointsDOMElement.textContent = currentPoints;
- 		timeLeft -= 3;
  	}      
     ajaxCall();
 } //end answerResult(number1, number2, mathType, userAnswer) method.
@@ -190,11 +191,11 @@ function runActualGame() {
 
 function getMathType() {
 	if (mathType == "*") {
-		return "*";
+		return "x";
 	} //end if-statement
 
 	else if (mathType == "/") {
-		return "/";
+		return"\xF7";
 	} //end if-statement
 
 	else {
