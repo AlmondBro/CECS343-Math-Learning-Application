@@ -54,7 +54,7 @@ function timer() {
      return;
   } 
 
- document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "\n" + "Seconds elasped: " + secondsElapsed;
+ document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "\n" + "Seconds elapsed: " + secondsElapsed;
 } 
 
 
