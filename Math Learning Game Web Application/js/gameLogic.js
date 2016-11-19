@@ -8,6 +8,7 @@ if (window.location.pathname == "/gameRun.html") {
     	getMathTypeButton(); 
     	console.log("User.difficultyLevel: " + user.difficultyLevel);
     	console.log("Type of math selected: " + mathType);
+        
 	} //end onload inline function
 }  //end if-statement
 
@@ -17,7 +18,9 @@ var difficultyLevelNumber = user.difficultyLevel;
 var mathType = user.mathType;
 
 document.getElementById("submitAnswer-Button").addEventListener("click", function() {answerResult(num1,num2,mathType,userAnswer.value)});
-var timeLeft = 30;
+
+var diff = parseInt(difficultyLevelNumber);
+var timeLeft = 40 + (diff * 15);
 var secondsElapsed = 0;
 var counter = setInterval(timer, 1000); 
 //var userAnswer = document.getElementById("answerInputInputBox");
@@ -55,6 +58,7 @@ function timer() {
   } 
 
  document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "\n" + "Seconds elapsed: " + secondsElapsed;
+
 } 
 
 
@@ -133,9 +137,6 @@ function generateTwoRandomNumbers(difficultyLevel) {
 } 
 
 function userAnswerChecker(number1, number2, mathType, userAnswer) {
-    console.log("This is your answer: " + userAnswer);
-    console.log("This is the first and second number: " + number1 + " " + number2);
-    
 	var correctAnswer;
     var isCorrect;
 	switch (mathType) {
@@ -169,7 +170,6 @@ function answerResult(number1, number2, mathType, userAnswer) {
         difficultyLevelNumber = parseInt(difficultyLevelNumber);
     	currentPoints += (6 * difficultyLevelNumber + (difficultyLevelNumber + 2));
         difficultyLevelNumber = difficultyLevelNumber.toString();
-        console.log(currentPoints);
     	currentPointsDOMElement.textContent = currentPoints;
      } 
  	else {
@@ -220,6 +220,7 @@ function ajaxCall() {
     request.onreadystatechange = function() {
         if ((request.readyState === 4) && (request.status === 200)) {
             document.getElementById("generatedQuestion").textContent = getEquation(generateTwoRandomNumbers(difficultyLevelNumber));
+            
             runActualGame();
         } //end if-statement
     } //end request.onreadystatechange inline function
