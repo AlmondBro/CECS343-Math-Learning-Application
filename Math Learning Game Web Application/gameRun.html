@@ -49,7 +49,7 @@
 				</div> <!-- col-md-12 -->
 			</div></center><!-- row questionGeneratedRow -->
 			
-			<center><form class="row" id="userAnswerForm">
+			<center><form class="row" id="userAnswerForm" onSubmit="return false">
 					<div class="col-md-6">
 						<label id="answerLabel" for="answerInputInputBox">Answer:</label>
 						<input id="answerInputInputBox" type="number" name="answer" rows="5"/>
@@ -57,7 +57,7 @@
 					
 					<div class="col-md-6 submitAnswerButtonCol">
 						<!--<button class="mathType-button" id="submitAnswer-Button">Submit Answer</button> -->
-						<input class="mathType-button" id="submitAnswer-Button" value="Submit Answer" type="button" />
+						<input class="mathType-button" id="submitAnswer-Button" value="Submit Answer" type="submit"  />
 					</div> <!-- /.col-md-6 --> 	
 					</form> <!-- /.row -->
 			</center>			
