@@ -2,6 +2,7 @@
 
 //Holds the input box element where the player types in his name
 var playerName = document.getElementById("nameInput");
+var userArray = [];
 
 var difficultyLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
 var difficultyLevelRadioButton_Checked = document.querySelector('input[name="level-options"]:checked');
@@ -21,15 +22,21 @@ var additionButton = document.getElementById("addition-Button");
 var subtractionButton = document.getElementById("subtraction-Button");
 var multiplicationButton = document.getElementById("multiplication-Button");
 var divisionButton = document.getElementById("division-Button");
+document.getElementById("highscore-Button").addEventListener("click", function() {
+	window.location.href = "/index.html#openModal";
+});
+document.getElementById("main-Menu-Button").addEventListener("click", function() {window.location.href = "/index.html";});
 
 additionButton.addEventListener('click', function(event) {
 		console.log("Swag Value: " + additionButton.value);
-		initializeGame(additionButton);
+        getTop10();
+		//setTimeout(function() {initializeGame(additionButton)}, 1000000);
+        initializeGame(additionButton);
 	}); //end inline (click) function
 
 subtractionButton.addEventListener('click', function(event) {
 		console.log("Swag Value: " + subtractionButton.value);
-		initializeGame(subtractionButton);
+		setTimeout(function() {initializeGame(subtractionButton)}, 10000);
 	}); //end inline (click) function
 
 multiplicationButton.addEventListener('click', function(event) {
@@ -76,7 +83,7 @@ function validateInputs(mathTypeSpecificButton) {
 		userInfo.mathType = mathTypeSwag.value;
 		userInfo.time = -1;
 
-		localStorage.setItem("userInfo", JSON.stringify(userInfo) );
+		localStorage.setItem("userInfo", JSON.stringify(userInfo));
 		console.log("cookie = " + JSON.stringify(userInfo));
 		window.location.pathname = "/gameRun.html";
 
@@ -128,5 +135,21 @@ function checkDifficultyLevel() {
 
 function returnDifficultyLevel() {
 	return difficultyLevelRadioButton_Checked.value;	
+}
+function separateUserData(){
+    var data = localStorage.getItem("highscoresList");
+    userArray = data.split(",");
+    console.log(userArray);
+}
+function compare(user1, user2){
+    var data1 = user1.split(" ");
+    var data2 = user2.split(" ");
+    if (data1[4] < data2[4]) { return -1;}
+    if (data1[4] > data2[4]) { return 1;}
+    return 0;
+}
+function getTop10(){
+    userArray.sort(compare);
+    console.log(userArray);
 }
 

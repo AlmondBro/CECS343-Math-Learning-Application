@@ -6,10 +6,8 @@ if (window.location.pathname == "/gameRun.html") {
     	ajaxCall();
     	document.getElementById("levelNumber").textContent = difficultyLevelNumber;
     	getMathTypeButton(); 
-    	console.log("User.difficultyLevel: " + user.difficultyLevel);
-    	console.log("Type of math selected: " + mathType);
-	} //end onload inline function
-}  //end if-statement
+	} 
+} 
 
 var userInfo = localStorage.getItem("userInfo");
 console.log(userInfo);
@@ -23,6 +21,10 @@ document.getElementById("main-Menu-Button").addEventListener("click", function()
 document.getElementById("pop-Up-Button").addEventListener("click", function() {
 	window.location.href = "/gameRun.html#openModal";
 });
+document.getElementById("submit-Score-Button").addEventListener("click", function() {
+     storeHighScore();
+     setTimeout(function() {window.location.href = "/index.html"}, 5000);
+     });
 
 var diff = parseInt(difficultyLevelNumber);
 var goalPoints = (15 * diff) + 15;
@@ -30,7 +32,6 @@ document.getElementById("goalPoints").innerHTML = goalPoints.toString();
 var timeLeft = 10;//(40 + (diff * 15));
 var secondsElapsed = 0;
 var counter = setInterval(timer, 100); 
-//var userAnswer = document.getElementById("answerInputInputBox").onclick();
 var num1;
 var num2; 
 var userAnswer= document.getElementById("answerInputInputBox");
@@ -41,21 +42,41 @@ var currentPoints = 0;
 function getMathTypeButton() {
 	if (mathType == "+") {
 		document.getElementById("addition-Button2").style.display = "inline-block";
-	} //end if-statement
+	} 
 
 	if (mathType == "-") {
 		document.getElementById("subtraction-Button2").style.display = "inline-block";
-	} //end if-statement
+	} 
 
 	if (mathType == "*") {
 		document.getElementById("multiplication-Button2").style.display = "inline-block";
-	} //end if-statement
+	} 
 
 	if (mathType == "/") {
 		document.getElementById("division-Button2").style.display = "inline-block";
-	} //end if-statement
-} //end getMathTypeButton()
-
+	} 
+}
+function storeHighScore(){
+    user.time = secondsElapsed.toString();
+    console.log(user);
+    var gameInfo;
+    if (localStorage.getItem("highscoresList") == null){
+          gameInfo = username + " " + difficultyLevelNumber + " " + mathType + " " + user.time + " " + (Math.round(weightScore()*100)/100).toString();
+    } else{
+      gameInfo = localStorage.getItem("highscoresList") + "," + username + " " + difficultyLevelNumber + " " + mathType + " " + user.time + " " + (Math.round(weightScore()*100)/100).toString();   
+    }
+    localStorage.setItem("highscoresList", gameInfo);
+    console.log(localStorage.getItem("highscoresList"));
+}
+function getNumberMathType(type){
+    if (type == "+") { return 1}
+	else if (type == "-") { return .75;}
+	else if (type == "*") { return .5; }
+	else { return .25; }
+}
+function weightScore(){
+    return getNumberMathType(mathType) * secondsElapsed + parseInt(difficultyLevelNumber)*2;
+}
 function timer() {
   timeLeft -= 0.1;
   timeLeft = Math.round(timeLeft * 100) / 100;
@@ -69,7 +90,7 @@ function timer() {
      return;
   } 
 
- document.getElementById("secondsLeft").textContent = timeLeft;
+ document.getElementById("secondsLeft").textContent = timeLeft.toString();
 } 
 function convertMathType(type){
 	if (type == "+") { return "Addition";}
@@ -89,7 +110,7 @@ function gameEnd(winOrLose) {
 	document.getElementById("user-name").innerHTML = username.length > 9 ? username.substring(0,8)+"..." : username;
 	document.getElementById("user-lvl").innerHTML = difficultyLevelNumber;
 	document.getElementById("user-type").innerHTML = convertMathType(mathType);
-	document.getElementById("user-time").innerHTML = secondsElapsed;
+	document.getElementById("user-time").innerHTML = secondsElapsed.toString();
 	window.location.href = "/gameRun.html#openModal";
 }
 
@@ -168,30 +189,23 @@ function generateTwoRandomNumbers(difficultyLevel) {
 } 
 
 function userAnswerChecker(number1, number2, mathType, userAnswer) {
-    console.log("This is your answer: " + userAnswer);
-    console.log("This is the first and second number: " + number1 + " " + number2);
-    
 	var correctAnswer;
     var isCorrect;
 	switch (mathType) {
 		case "+":
 			correctAnswer = number1 + number2;
-			console.log("Correct Answer: " + correctAnswer + "\n");
 			isCorrect = userAnswer == correctAnswer;
 			break;
 		case "-":
 			correctAnswer = number1 - number2;
-			console.log("Correct Answer: " + correctAnswer + "\n");
 			isCorrect = userAnswer == correctAnswer;
 			break;
 		case "*":
 			correctAnswer = number1 * number2;
-			console.log("Correct Answer: " + correctAnswer + "\n");
 			isCorrect = userAnswer == correctAnswer;
 			break;
 		case "/":
 			correctAnswer = number1 / number2;
-			console.log("Correct Answer: " + correctAnswer + "\n");
 			isCorrect = userAnswer == correctAnswer;
 			break;
 	} 
@@ -201,29 +215,26 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 
 function answerResult(number1, number2, mathType, userAnswer) {
     if (userAnswerChecker(number1,number2,mathType,userAnswer)) {
-    	console.log("Correct answer! :)");
         difficultyLevelNumber = parseInt(difficultyLevelNumber);
     	currentPoints += (6 * difficultyLevelNumber + (difficultyLevelNumber + 2));
         difficultyLevelNumber = difficultyLevelNumber.toString();
-        console.log(currentPoints);
-    	currentPointsDOMElement.textContent = currentPoints;
+    	currentPointsDOMElement.textContent = currentPoints.toString();
 		if (currentPoints >= goalPoints) {
-			clearInterval(counter);	// stops timer
+			clearInterval(counter);	
 			secondsElapsed -= .1;
             secondsElapsed = Math.round(secondsElapsed * 100) / 100;
 			gameEnd(true);
 		}
      } 
  	else {
- 		console.log("Incorrect answer :(" + "\n");
  		currentPoints -= 4 * difficultyLevelNumber;
  		if (currentPoints <= 0 ) {
  			currentPoints = 0;
- 		} //end if-statement
- 		currentPointsDOMElement.textContent = currentPoints;
+ 		} 
+ 		currentPointsDOMElement.textContent = currentPoints.toString();
  	}      
     ajaxCall();
-} //end answerResult(number1, number2, mathType, userAnswer) method.
+} 
 
 function displayCorrectnessImg(TorF) {
 	var checkImg;
@@ -243,25 +254,24 @@ function getEquation(twoNumbers) {
 } 
 
 function runActualGame() {
-	console.log("Running actual game function. Clears answer input when changing equation" + "\n" + "\n");
 	if (userAnswer.value != "") {
 		userAnswer.value = "";
-	} //end if-statement
-} //end runActualGame() function
+	} 
+}
 
 function getMathType() {
 	if (mathType == "*") {
 		return "x";
-	} //end if-statement
+	}
 
 	else if (mathType == "/") {
 		return"\xF7";
-	} //end if-statement
+	} 
 
 	else {
 		return mathType;
-	} //end else-statement
-} //end getMathType()
+	} 
+} 
 
 function fadeIn(el, time) {
      el.style.opacity = 0;
@@ -323,8 +333,8 @@ function ajaxCall() {
         if ((request.readyState === 4) && (request.status === 200)) {
             document.getElementById("generatedQuestion").textContent = getEquation(generateTwoRandomNumbers(difficultyLevelNumber));
             runActualGame();
-        } //end if-statement
-    } //end request.onreadystatechange inline function
+        } 
+    } 
     request.send();
-} //end ajaxCall() function
+} 
 

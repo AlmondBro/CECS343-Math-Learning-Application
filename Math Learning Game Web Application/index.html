@@ -11,6 +11,97 @@
 	</head>
 	
 	<body>
+            <!-- Model popup dialog box-->
+        <div id="openModal" class="modalDialog">
+            <div id="pop-up-main">
+                <!--Table-->
+                <a href="#close" title="Close" class="close">X</a>
+                <h1>Highscores</h1>
+                <table>
+                    <tr>
+                    	<th>#</th>
+                        <th>Username</th>
+                        <th>Level</th>
+                        <th>Math Type</th>
+                        <th>Time</th>
+                    </tr>
+                    <tr>
+                    	<td>1</td>
+                        <td id="user-name"></td>
+                        <td id="user-lvl"></td>
+                        <td id="user-type"></td>
+                        <td id="user-time"></td>
+                    </tr>
+                    <tr>
+                    	<td>2</td>
+                        <td id="user-name1"></td>
+                        <td id="user-lvl1"></td>
+                        <td id="user-type1"></td>
+                        <td id="user-time1"></td>
+                    </tr>
+                    <tr>
+                    	<td>3</td>
+                        <td id="user-name2"></td>
+                        <td id="user-lvl2"></td>
+                        <td id="user-type2"></td>
+                        <td id="user-time2"></td>
+                    </tr>
+                    <tr>
+                    	<td>4</td>
+                        <td id="user-name3"></td>
+                        <td id="user-lvl3"></td>
+                        <td id="user-type3"></td>
+                        <td id="user-time3"></td>
+                    </tr>
+                    <tr>
+                    	<td>5</td>
+                        <td id="user-name4"></td>
+                        <td id="user-lvl4"></td>
+                        <td id="user-type4"></td>
+                        <td id="user-time4"></td>
+                    </tr>
+                    <tr>
+                    	<td>6</td>
+                        <td id="user-name5"></td>
+                        <td id="user-lvl5"></td>
+                        <td id="user-type5"></td>
+                        <td id="user-time5"></td>
+                    </tr>
+                    <tr>
+                    	<td>7</td>
+                        <td id="user-name6"></td>
+                        <td id="user-lvl6"></td>
+                        <td id="user-type6"></td>
+                        <td id="user-time6"></td>
+                    </tr>
+                    <tr>
+                    	<td>8</td>
+                        <td id="user-name7"></td>
+                        <td id="user-lvl7"></td>
+                        <td id="user-type7"></td>
+                        <td id="user-time7"></td>
+                    </tr>
+                    <tr>
+                    	<td>9</td>
+                        <td id="user-name8"></td>
+                        <td id="user-lvl8"></td>
+                        <td id="user-type8"></td>
+                        <td id="user-time8"></td>
+                    </tr>
+                    <tr>
+                    	<td>10</td>
+                        <td id="user-name9"></td>
+                        <td id="user-lvl9"></td>
+                        <td id="user-type9"></td>
+                        <td id="user-time9"></td>
+                    </tr>
+                </table>
+                <div id="pop-up-buttons">
+                    <button class="mathType-button" id="main-Menu-Button">Main Menu</button>
+                </div>
+            </div>
+        </div>
+        <!-- Model popup dialog box END-->
 		<div class="container">
 			<section class="paper">
 				<article class="head">
@@ -19,7 +110,7 @@
 
 				<p>&nbsp;</p> <!-- Breakspace -->
 				
-				<center><form class="row">
+				<center><form class="row" onSubmit="return false">
 					<div class="col-md-12">
 					<label class="" for="nameInput">Enter your name, player! :</label>
 					<input id="nameInput" type="text" name="name" class="img-responsive" required/></div>
@@ -106,7 +197,9 @@
 						<button class="mathType-button" id="multiplication-Button" value="*">Multiplication ( x )</button>
 						<button class="mathType-button" id="division-Button" value="/">Division ( &#xf7; )</button>
 					</div ><!-- /.col-md-12 col-sm-6-->
-
+					<div id="menu-footer">
+                    	<button class="mathType-button" id="highscore-Button">Highscores</button>
+                    </div>
 				</center></section> <!-- /.row -->
 			</section> <!-- /.paper --> 
 		</div> <!-- /.container -->
