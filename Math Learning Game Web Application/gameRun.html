@@ -12,13 +12,40 @@
 <!-- Google fonts -->
 <meta name="description" content="This is the term project for the California State University Class CECS343 (Introduction to Software Engineering). This is a simple app game that consists of math questions that are to be answered in a particular amount of time. Users can select their level of difficulty on addition, subtraction, multiplication, and division. The game is oriented towards young children, so there are no algebra questions.">
 </head>
-
 <body>
+<!-- Model popup dialog box-->
+<div id="openModal" class="modalDialog">
+	<div id="pop-up">
+		<!--Table-->
+        <a href="#close" title="Close" class="close">X</a>
+        <h1 id="endMsg"></h1>
+        <table>
+        	<tr>
+            	<th>Username</th>
+                <th>Level</th>
+                <th>Math Type</th>
+                <th>Time</th>
+            </tr>
+            <tr>
+            	<td id="user-name"></td>
+                <td id="user-lvl"></td>
+                <td id="user-type"></td>
+                <td id="user-time"></td>
+            </tr>
+        </table>
+        <div id="pop-up-buttons">
+        	<button class="mathType-button" id="main-Menu-Button">Main Menu</button>
+            <div id="pop-up-button-spacer"></div>
+        	<button class="mathType-button" id="submit-Score-Button">Submit Score</button>
+        </div>
+	</div>
+</div>
+<!-- Model popup dialog box END-->
 <div class="container">
   <section class="paper">
     <article class="head">
       <center>
-        <article contenteditable="true">
+        <article contenteditable="false">
           <h3 id="welcome-Slogan">Try to Reach the Goal Points</br>
             As Fast As You Can! (:</h3>
         </article>
@@ -77,7 +104,7 @@
       <form class="row" id="userAnswerForm" onSubmit="return false">
         <div class="col-md-6">
           <label id="answerLabel" for="answerInputInputBox">Answer:</label>
-          <input id="answerInputInputBox" type="number" name="answer" rows="5"/>
+          <input id="answerInputInputBox" type="number" name="answer" rows="5" autocomplete="off"/>
           <img class="responsiveImg" id="checkMarkWin" src="\assets\images\v.png"</img>
           <img class="responsiveImg" id="checkXLose" src="\assets\images\x.png"</img>
         </div>
@@ -103,7 +130,7 @@
         <!-- col-md-12 -->
         
         <div class="col-md-6">
-          <p class="title"><span class="title">Goal Points: </span> <span id="generatedQuestion">75</span></p>
+          <p class="title"><span class="title">Goal Points: </span> <span id="goalPoints"></span></p>
         </div>
         <!-- col-md-12 --> 
       </div>
@@ -112,6 +139,7 @@
     
     <div class="col-md-6">
     	<button class="mathType-button" id="main-Menu-Button">Main Menu</button>
+        <button class="mathType-button" id="pop-Up-Button">Pop-Up</button>
     </div>
     
   </section>

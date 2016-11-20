@@ -74,8 +74,10 @@ function validateInputs(mathTypeSpecificButton) {
 		userInfo.userName = playerName.value;
 		userInfo.difficultyLevel =  document.querySelector('input[name="level-options"]:checked').value;
 		userInfo.mathType = mathTypeSwag.value;
+		userInfo.time = -1;
 
 		localStorage.setItem("userInfo", JSON.stringify(userInfo) );
+		console.log("cookie = " + JSON.stringify(userInfo));
 		window.location.pathname = "/gameRun.html";
 
 		console.log("Math Value of button: " + mathTypeSwag.value);

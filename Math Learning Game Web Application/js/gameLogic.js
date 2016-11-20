@@ -12,17 +12,24 @@ if (window.location.pathname == "/gameRun.html") {
 }  //end if-statement
 
 var userInfo = localStorage.getItem("userInfo");
+console.log(userInfo);
 var user = JSON.parse(userInfo);	
 var difficultyLevelNumber = user.difficultyLevel;	
 var mathType = user.mathType;
+var username = user.userName;
 
 document.getElementById("submitAnswer-Button").addEventListener("click", function() {answerResult(num1,num2,mathType,userAnswer.value)});
 document.getElementById("main-Menu-Button").addEventListener("click", function() {window.location.href = "/index.html";});
+document.getElementById("pop-Up-Button").addEventListener("click", function() {
+	window.location.href = "/gameRun.html#openModal";
+});
 
 var diff = parseInt(difficultyLevelNumber);
-var timeLeft = (40 + (diff * 15));
+var goalPoints = (15 * diff) + 15;
+document.getElementById("goalPoints").innerHTML = goalPoints.toString();
+var timeLeft = 10;//(40 + (diff * 15));
 var secondsElapsed = 0;
-var counter = setInterval(timer, 1000); 
+var counter = setInterval(timer, 100); 
 //var userAnswer = document.getElementById("answerInputInputBox").onclick();
 var num1;
 var num2; 
@@ -50,16 +57,40 @@ function getMathTypeButton() {
 } //end getMathTypeButton()
 
 function timer() {
-  timeLeft--;
-  secondsElapsed++;
+  timeLeft -= 0.1;
+  timeLeft = Math.round(timeLeft * 100) / 100;
+  secondsElapsed += .1;
+  secondsElapsed = Math.round(secondsElapsed * 100) / 100;
   if (timeLeft < 0) {
+	  secondsElapsed -= .1;
+	  gameEnd(false);
      clearInterval(counter);
      return;
   } 
 
- document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "\n" + "Seconds elapsed: " + secondsElapsed;
+ document.getElementById("secondsLeft").textContent = timeLeft;
 } 
+function convertMathType(type){
+	if (type == "+") { return "Addition";}
+	else if (type == "-") { return "Subtraction";}
+	else if (type == "*") { return "Multiplication"; }
+	else { return "Division"; }
+}
 
+	
+function gameEnd(winOrLose) {
+	if(winOrLose) {
+		document.getElementById("endMsg").innerHTML = "You Won!";
+	}
+	else {
+		document.getElementById("endMsg").innerHTML = "You Lost!";
+	}
+	document.getElementById("user-name").innerHTML = username.length > 9 ? username.substring(0,8)+"..." : username;
+	document.getElementById("user-lvl").innerHTML = difficultyLevelNumber;
+	document.getElementById("user-type").innerHTML = convertMathType(mathType);
+	document.getElementById("user-time").innerHTML = secondsElapsed;
+	window.location.href = "/gameRun.html#openModal";
+}
 
 function isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
@@ -175,6 +206,11 @@ function answerResult(number1, number2, mathType, userAnswer) {
         difficultyLevelNumber = difficultyLevelNumber.toString();
         console.log(currentPoints);
     	currentPointsDOMElement.textContent = currentPoints;
+		if (currentPoints >= goalPoints) {
+			clearInterval(counter);	// stops timer
+			secondsElapsed -= .1;
+			gameEnd(true);
+		}
      } 
  	else {
  		console.log("Incorrect answer :(" + "\n");
