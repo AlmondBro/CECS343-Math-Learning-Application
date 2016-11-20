@@ -63,6 +63,7 @@ function timer() {
   secondsElapsed = Math.round(secondsElapsed * 100) / 100;
   if (timeLeft < 0) {
 	  secondsElapsed -= .1;
+      secondsElapsed = Math.round(secondsElapsed * 100) / 100;
 	  gameEnd(false);
      clearInterval(counter);
      return;
@@ -209,6 +210,7 @@ function answerResult(number1, number2, mathType, userAnswer) {
 		if (currentPoints >= goalPoints) {
 			clearInterval(counter);	// stops timer
 			secondsElapsed -= .1;
+            secondsElapsed = Math.round(secondsElapsed * 100) / 100;
 			gameEnd(true);
 		}
      } 
