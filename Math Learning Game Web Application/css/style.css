@@ -1,17 +1,17 @@
-html, body { height: 100%;   }
+html, body {
+	height: 100%;
+}
 body {
-	 font-family: normal 16px/1.5 "Asap", arial, sans-serif; 
-    /*
+	font-family: normal 16px/1.5 "Asap", arial, sans-serif;
+	/*
 	font-family: 'Cedarville Cursive', cursive;
     font-family: 'Butterfly Kids', cursive;
     font-family: 'Asap', sans-serif;
 	font-size: 18px;
 	*/
    /* Gradient BG */
-   background-image: url('../assets/images/wood-desktop-bg.jpg');
-   background-size: cover;
-   
-   /* Nice Sky Blue Gradient BG 
+	background-image: url('../assets/images/wood-desktop-bg.jpg');
+	background-size: cover;/* Nice Sky Blue Gradient BG 
    
    background: -webkit-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
 
@@ -29,166 +29,105 @@ body {
    
 
 }
-
 .nbLineText {
 	font-family: 'Asap', cursive;
 }
-
 .paper {
 	font-family: 'Caveat', cursive; /* Annie Use Your Telescope */
 	font-size: 1.8em;
-	
-/* Default line-height is 20px */
+	/* Default line-height is 20px */
   /*width: 50%;
 
   height: 80%; */
 
-  margin: 0 auto;
-
-  padding: 6px 5px 4px 42px;
-
-  position: relative;
-
-  color: #444;
-
-  line-height: 25px;
-
-  border: 1px solid #d2d2d2;
-
-  background: #fff;
-
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#55bcf3), color-stop(4%, #fff)) 0 4px;
-
-  background: -webkit-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
-
-  background: -moz-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
-
-  background: -ms-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
-
-  background: -o-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
-
-  background: linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
-
-  -webkit-background-size: 100% 25px;
-
-  -moz-background-size: 100% 25px;
-
-  -ms-background-size: 100% 25px;
-
-  -o-background-size: 100% 25px;
-
-  background-size: 100% 25px;
-
-  -webkit-border-radius: 3px;
-
-  -moz-border-radius: 3px;
-
-  border-radius: 3px;
-
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
-
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
-
-  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
-
-  max-width: 816px;
-
-  height: 1500px; /*1056 px*/
-
+	margin: 0 auto;
+	padding: 6px 5px 4px 42px;
+	position: relative;
+	color: #444;
+	line-height: 25px;
+	border: 1px solid #d2d2d2;
+	background: #fff;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#55bcf3), color-stop(4%, #fff)) 0 4px;
+	background: -webkit-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
+	background: -moz-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
+	background: -ms-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
+	background: -o-linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
+	background: linear-gradient(top, #55bcf3 0%, #fff 8%) 0 4px;
+	-webkit-background-size: 100% 25px;
+	-moz-background-size: 100% 25px;
+	-ms-background-size: 100% 25px;
+	-o-background-size: 100% 25px;
+	background-size: 100% 25px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	max-width: 816px;
+	height: 1500px; /*1056 px*/
 }
-
 .paper::before {
-
-  content: '';
-
-  position: absolute;
-
-  width: 8px; /* default is 4px */
-
-  top: 0;
-
-  left: 30px;
-
-  bottom: 0;
-
-  border: 1px solid;
-
-  border-color: transparent #ef9f9f; /* Default is #ef9f9f */
-
+	content: '';
+	position: absolute;
+	width: 8px; /* default is 4px */
+	top: 0;
+	left: 30px;
+	bottom: 0;
+	border: 1px solid;
+	border-color: transparent #ef9f9f; /* Default is #ef9f9f */
 }
-
 textarea {
-
-  display: block;
-
-  width: 94%;
-
-  margin: 0 auto;
-
-  padding: 3.8% 3%;
-
-  border: none;
-
-  outline: none;
-
-  height: 94%;
-
-  background: transparent;
-
-  line-height: 25px;
+	display: block;
+	width: 94%;
+	margin: 0 auto;
+	padding: 3.8% 3%;
+	border: none;
+	outline: none;
+	height: 94%;
+	background: transparent;
+	line-height: 25px;
 }
-
 .head {
-
-   background-color: #FFF;
-
-   min-height: 124px;
-
-   margin-left: -42px;
-
-   margin-top: -4px;
+	background-color: #FFF;
+	min-height: 124px;
+	margin-left: -42px;
+	margin-top: -4px;
 }
-
 #welcome-Slogan {
 	font-family: 'Cabin Sketch', cursive;
 	font-size: 50px;
 	color: purple;
 }
-
 input[type='number'] {
-    -moz-appearance:textfield;
+	-moz-appearance: textfield;
 }
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+ -webkit-appearance: none;
+ margin: 0;
 }
-			
-input[type="radio"]{
-    display: none;
-    border: none !important;
-    box-shadow: none !important;
+input[type="radio"] {
+	display: none;
+	border: none !important;
+	box-shadow: none !important;
 }
-
-input[type="radio"] + label span {   
-    background: url('../assets/images/single-green-checkmark-in-red-circle-only.png');
+input[type="radio"] + label span {
+	background: url('../assets/images/single-green-checkmark-in-red-circle-only.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
-    width: 50px;
-    height: 50px;
-    display: inline-block;
-    vertical-align: middle;
+	background-repeat: no-repeat;
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	vertical-align: middle;
 }
-
 input[type="radio"]:checked + label span {
-    background: url('../assets/images/single-green-checkmark-in-red-circle.png');
+	background: url('../assets/images/single-green-checkmark-in-red-circle.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
-    width: 50px;
-    height: 50px;
-    vertical-align: middle;
+	background-repeat: no-repeat;
+	width: 50px;
+	height: 50px;
+	vertical-align: middle;
 }
-
 #nameInput {
 	height: 25px; /*24.8px */
 	background-image: url('../assets/images/name-input-background-lighter-inbetween.png');
@@ -196,97 +135,77 @@ input[type="radio"]:checked + label span {
 	background-repeat: no-repeat;
 	border: none;
 }
-
 .chooseDifficulty-Header {
 	margin: 0 auto;
 	padding: 3px;
 }
-
 .mathType-button {
 	border-radius: 25px;
 	text-align: center;
-	display: inline-block; 
+	display: inline-block;
 	color: white;
 	font-weight: bold;
 	border: 0;
-  width: 180px;
-  height: 77px;
+	width: 180px;
+	height: 77px;
 }
-
 #addition-Button {
-  background: url('../assets/images/Scribble-Button-Blue.png');
+	background: url('../assets/images/Scribble-Button-Blue.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 }
-
 #subtraction-Button {
-  background: url('../assets/images/Scribble-Button-Green.png');
+	background: url('../assets/images/Scribble-Button-Green.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 }
-
 #multiplication-Button {
-  background: url('../assets/images/Scribble-Button-purple.png');
+	background: url('../assets/images/Scribble-Button-purple.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 }
-
-
 #division-Button {
-  background: url('../assets/images/Scribble-Button-Red.png');
+	background: url('../assets/images/Scribble-Button-Red.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 }
-
 #submitAnswer-Button {
-  background: url('../assets/images/Scribble-Button-purple.png');
+	background: url('../assets/images/Scribble-Button-purple.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 }
-
-
 /* gameRun.html Math Type Buttons */
 #addition-Button2 {
-  background: url('../assets/images/Scribble-Button-Blue.png');
+	background: url('../assets/images/Scribble-Button-Blue.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
-
-  display: none;
+	background-repeat: no-repeat;
+	display: none;
 }
-
 #subtraction-Button2 {
-  background: url('../assets/images/Scribble-Button-Green.png');
+	background: url('../assets/images/Scribble-Button-Green.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
-
-  display: none;
+	background-repeat: no-repeat;
+	display: none;
 }
-
 #multiplication-Button2 {
-  display: none;
-  background: url('../assets/images/Scribble-Button-purple.png');
+	display: none;
+	background: url('../assets/images/Scribble-Button-purple.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 }
-
 #division-Button2 {
-  background: url('../assets/images/Scribble-Button-Red.png');
+	background: url('../assets/images/Scribble-Button-Red.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
-
-  display: none;
+	background-repeat: no-repeat;
+	display: none;
 }
-
-
 /**** gameRun.html specific styles ****/
 .currentGameInfo {
 	font-size: 1.5em;
 }
-
 .questionGeneratedRow {
 	font-size: 2em;
 }
-
 #generatedQuestion {
 	height: 25px; /*24.8px */
 	padding: 10px;
@@ -301,109 +220,100 @@ input[type="radio"]:checked + label span {
 .submitAnswerButtonCol {
 	padding: 8%;
 }
-
 #levelNumber-Button {
 	background-image: url('../assets/images/Scribble-Button-Red.png');
 	background-size: 100%;
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 }
-
+#main-Menu-Button {
+	background-image: url('../assets/images/Scribble-Button-Green.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
 #userAnswerForm {
 	padding: 0px 20%;
 }
 
 /* Fix overlap of the user answer form
  with other elementts on smaller screen sizes */
-@media only screen and (max-width: 357px)  {
-	#userAnswerForm {
-		padding: 0px 20%;
-		margin-top: 20px; 
-	}
+@media only screen and (max-width: 357px) {
+#userAnswerForm {
+	padding: 0px 20%;
+	margin-top: 20px;
 }
-
+}
 #answerInputInputBox {
 	font-size: 3em;
 	width: 150px;
 	height: 100px;
 	border-radius: 15px;
-	
 	background-image: url('../assets/images/name-input-background-lighter-inbetween.png');
 	background-size: cover;
 	background-repeat: no-repeat;
 	border: none;
-}	
-
+}
 #answerLabel {
 	display: inline-block;
 }
-
 .title {
 	margin-bottom: 40px;
 	display: inline-block
 }
-
-hr.dottedScissorsLine { 
-  border-top: 3px dashed #2295d2; 
-} 
-hr.dottedScissorsLine:after { 
-  content: '\002702'; 
-  display: inline-block; 
-  position: relative; 
-  top: -12px; 
-  left: 40px; 
-  padding: 0 3px; 
-  background: #2295d2; 
-  color: #b9e3fa; 
-  font-size: 0.75em; 
-  border-radius: 10%;
+hr.dottedScissorsLine {
+	border-top: 3px dashed #2295d2;
 }
-
+hr.dottedScissorsLine:after {
+	content: '\002702';
+	display: inline-block;
+	position: relative;
+	top: -12px;
+	left: 40px;
+	padding: 0 3px;
+	background: #2295d2;
+	color: #b9e3fa;
+	font-size: 0.75em;
+	border-radius: 10%;
+}
 #nameError {
-  margin-top: 12px;
+	margin-top: 12px;
 }
-
-
 #levelError {
-
 }
-
 #nameInput-errorMessage {
 	display: none;
-
-  color: white;
-  font-weight: bold;
-  border-radius: 25px;
+	color: white;
+	font-weight: bold;
+	border-radius: 25px;
 	text-align: center;
 	/*display: inline-block; */
 	border: 0;
-  width: 180px;
-  height: 77px;
-
-  background-image: url('../assets/images/Scribble-Button-Red.png');
+	width: 180px;
+	height: 77px;
+	background-image: url('../assets/images/Scribble-Button-Red.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
-
 #difficultyLevel-errorMessage {
 	display: none;
-
 	color: white;
-  font-weight: bold;
-  border-radius: 25px;
+	font-weight: bold;
+	border-radius: 25px;
 	text-align: center;
 	/*display: inline-block; */
 	border: 0;
-  width: 180px;
-  height: 77px;
-
-  background-image: url('../assets/images/Scribble-Button-Red.png');
+	width: 180px;
+	height: 77px;
+	background-image: url('../assets/images/Scribble-Button-Red.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
-
+.responsiveImg {
+	display: none;
+	width: 70px;	
+}
 .error-msg {
-  text-decoration: underline;
-  color: gold;
-  font-weight: thick;
-  font-size: 1.25em;
+	text-decoration: underline;
+	color: gold;
+	font-weight: thick;
+	font-size: 1.25em;
 }

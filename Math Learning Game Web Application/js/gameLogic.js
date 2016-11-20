@@ -8,7 +8,6 @@ if (window.location.pathname == "/gameRun.html") {
     	getMathTypeButton(); 
     	console.log("User.difficultyLevel: " + user.difficultyLevel);
     	console.log("Type of math selected: " + mathType);
-        
 	} //end onload inline function
 }  //end if-statement
 
@@ -18,12 +17,13 @@ var difficultyLevelNumber = user.difficultyLevel;
 var mathType = user.mathType;
 
 document.getElementById("submitAnswer-Button").addEventListener("click", function() {answerResult(num1,num2,mathType,userAnswer.value)});
+document.getElementById("main-Menu-Button").addEventListener("click", function() {window.location.href = "/index.html";});
 
 var diff = parseInt(difficultyLevelNumber);
-var timeLeft = 40 + (diff * 15);
+var timeLeft = (40 + (diff * 15));
 var secondsElapsed = 0;
 var counter = setInterval(timer, 1000); 
-//var userAnswer = document.getElementById("answerInputInputBox");
+//var userAnswer = document.getElementById("answerInputInputBox").onclick();
 var num1;
 var num2; 
 var userAnswer= document.getElementById("answerInputInputBox");
@@ -58,7 +58,6 @@ function timer() {
   } 
 
  document.getElementById("secondsLeft").textContent = timeLeft + " secs" + "\n" + "Seconds elapsed: " + secondsElapsed;
-
 } 
 
 
@@ -137,6 +136,9 @@ function generateTwoRandomNumbers(difficultyLevel) {
 } 
 
 function userAnswerChecker(number1, number2, mathType, userAnswer) {
+    console.log("This is your answer: " + userAnswer);
+    console.log("This is the first and second number: " + number1 + " " + number2);
+    
 	var correctAnswer;
     var isCorrect;
 	switch (mathType) {
@@ -161,6 +163,7 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 			isCorrect = userAnswer == correctAnswer;
 			break;
 	} 
+	displayCorrectnessImg(isCorrect);	//Display the "check" or "x" img if correct or not
     return isCorrect;
 } 
 
@@ -170,6 +173,7 @@ function answerResult(number1, number2, mathType, userAnswer) {
         difficultyLevelNumber = parseInt(difficultyLevelNumber);
     	currentPoints += (6 * difficultyLevelNumber + (difficultyLevelNumber + 2));
         difficultyLevelNumber = difficultyLevelNumber.toString();
+        console.log(currentPoints);
     	currentPointsDOMElement.textContent = currentPoints;
      } 
  	else {
@@ -182,6 +186,18 @@ function answerResult(number1, number2, mathType, userAnswer) {
  	}      
     ajaxCall();
 } //end answerResult(number1, number2, mathType, userAnswer) method.
+
+function displayCorrectnessImg(TorF) {
+	var checkImg;
+	if(TorF) {
+		checkImg = document.getElementById("checkMarkWin");
+	}
+	else {
+		checkImg = document.getElementById("checkXLose");
+	}
+		fadeIn(checkImg, 700);
+		setTimeout(function () {fadeOut(checkImg, 700);}, 800);
+}
 
 function getEquation(twoNumbers) {
 	var currentEquation = twoNumbers[0] + " " +  getMathType() + " " + twoNumbers[1] + "    = ";
@@ -209,6 +225,54 @@ function getMathType() {
 	} //end else-statement
 } //end getMathType()
 
+function fadeIn(el, time) {
+     el.style.opacity = 0;
+	 el.style.visibility = "visible";
+     el.style.display = "block";
+
+     var last = +new Date();
+     var tick = function() {
+          el.style.opacity = +el.style.opacity + (new Date() - last) / time;
+          last = +new Date();
+
+          if (+el.style.opacity < 1) {
+               (window.requestAnimationFrame && requestAnimationFrame(tick)) ||      setTimeout(tick, 16)
+          }
+     };
+
+     tick();
+}
+
+function fadeOut( elem, ms )
+{
+  if( ! elem )
+    return;
+
+  if( ms )
+  {
+    var opacity = 1;
+    var timer = setInterval( function() {
+      opacity -= 50 / ms;
+      if( opacity <= 0 )
+      {
+        clearInterval(timer);
+        opacity = 0;
+        elem.style.display = "none";
+        elem.style.visibility = "hidden";
+      }
+      elem.style.opacity = opacity;
+      elem.style.filter = "alpha(opacity=" + opacity * 100 + ")";
+    }, 50 );
+  }
+  else
+  {
+    elem.style.opacity = 0;
+    elem.style.filter = "alpha(opacity=0)";
+    elem.style.display = "none";
+    elem.style.visibility = "hidden";
+  }
+}
+
 function ajaxCall() {
     var request;
     if (window.XMLHttpRequest) { 
@@ -220,7 +284,6 @@ function ajaxCall() {
     request.onreadystatechange = function() {
         if ((request.readyState === 4) && (request.status === 200)) {
             document.getElementById("generatedQuestion").textContent = getEquation(generateTwoRandomNumbers(difficultyLevelNumber));
-            
             runActualGame();
         } //end if-statement
     } //end request.onreadystatechange inline function
