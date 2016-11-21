@@ -272,7 +272,7 @@ input[type="radio"]:checked + label span {
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
-#main-Menu-Button {
+.main-menu-button {
 	background-image: url('../assets/images/Scribble-Button-Green.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
@@ -437,10 +437,10 @@ hr.dottedScissorsLine:after {
 	height: 500px; /*1056 px*/
 }
 #pop-up-main {
+	height: 850px;
 	text-align: center;
 	font-size: 40px;
 	margin: 50px auto;
-    height: 850px;
 }
 #pop-up {
 	text-align: center;

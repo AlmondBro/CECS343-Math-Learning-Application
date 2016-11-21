@@ -2,8 +2,8 @@
 
 //Holds the input box element where the player types in his name
 var playerName = document.getElementById("nameInput");
-var userArray = [];
-populateHighScoresTable();
+var userArray = localStorage.getItem("highscoresList");
+var objArray = JSON.parse(userArray);
 
 var difficultyLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
 var difficultyLevelRadioButton_Checked = document.querySelector('input[name="level-options"]:checked');
@@ -24,36 +24,38 @@ var subtractionButton = document.getElementById("subtraction-Button");
 var multiplicationButton = document.getElementById("multiplication-Button");
 var divisionButton = document.getElementById("division-Button");
 document.getElementById("highscore-Button").addEventListener("click", function() {
+	getTop10();
+	populateHighScores();
 	window.location.href = "/index.html#openModal";
 });
-document.getElementById("main-Menu-Button").addEventListener("click", function() {window.location.href = "/index.html";});
+document.getElementById("main-menu-button").addEventListener("click", function() {window.location.href = "/index.html";});
 
 additionButton.addEventListener('click', function(event) {
 		console.log("Swag Value: " + additionButton.value);
         initializeGame(additionButton);
-	}); 
+	}); //end inline (click) function
 
 subtractionButton.addEventListener('click', function(event) {
 		console.log("Swag Value: " + subtractionButton.value);
 		initializeGame(subtractionButton);
-	}); 
+	}); //end inline (click) function
 
 multiplicationButton.addEventListener('click', function(event) {
 		console.log("Swag Value: " + multiplicationButton.value);
 		initializeGame(multiplicationButton);
-	}); 
+	}); //end inline (click) function
 
 divisionButton.addEventListener('click', function(event) {
 		console.log("Swag Value: " + divisionButton.value);
 		initializeGame(divisionButton);
-	}); 
+	}); //end inline (click) function
 
 
 function initializeGame(mathTypeSpecificButton) {
 	var mathTypeValue = mathTypeSpecificButton;
 	console.log("A Math Type Button Was Clicked.");
     validateInputs(mathTypeValue); 
-} 
+} //end initializeGame() button
 
 
 /* Check to see if the player name input box is empty and/or
@@ -133,48 +135,35 @@ function checkDifficultyLevel() {
 } 
 
 function returnDifficultyLevel() {
-	return difficultyLevelRadioButton_Checked.value;	
-}
-function separateUserData(){
-    var data = localStorage.getItem("highscoresList");
-    userArray = data.split(",");
+	return difficultyLevelRadioButton_Checked.value;
 }
 function compare(user1, user2){
-    var data1 = user1.split(" ");
-    var data2 = user2.split(" ");
-    if (parseInt(data1[4]) < parseInt(data2[4])) { return -1;}
-    if (parseInt(data1[4]) > parseInt(data2[4])) { return 1;}
+    var data1 = user1.score;
+    var data2 = user2.score;
+    if (parseInt(data1) < parseInt(data2)) { return -1;}
+    if (parseInt(data1) > parseInt(data2)) { return 1;}
     return 0;
 }
 function getTop10(){
-    separateUserData();
-    userArray.sort(compare);
+	console.log(objArray[0].score);
+	console.log(objArray[0].userName);
+    objArray.sort(compare);
 }
-function populateHighScoresTable(){
-    getTop10();
-    for (var i = 0; i < 10; i++){
-        if (userArray.length > i){
-            var d = userArray[i];
-            var data = d.split(" ");
-            console.log(data);
-            var name = data[0];
-            console.log(name);
-            var level = data[1];
-            console.log(level);
-            var mathType = data[2];
-            console.log(mathType);
-            var time = data[3];
-            console.log(time);
-            var nameTable = "user-name" + i.toString();
-            var lvlTable = "user-lvl" + i.toString();
-            var typeTable = "user-type" + i.toString();
-            var timeTable = "user-time" + i.toString();
-            document.getElementById(nameTable).textContent = name;
-            document.getElementById(lvlTable).innerHTML = level;
-            document.getElementById(typeTable).innerHTML = convertMathType(mathType);
-            document.getElementById(timeTable).innerHTML = time;
-         }
-    }
+
+function populateHighScores() {
+	for (var i=0; i<objArray.length; i++){
+		if (i == 10) {return;}
+		var name = "user-name"+i;
+		var lvl = "user-lvl"+i;
+		var type = "user-type"+i;
+		var time = "user-time"+i;
+		document.getElementById(name).innerHTML = objArray[i].userName;
+		document.getElementById(lvl).innerHTML = objArray[i].difficultyLevel;
+        var newMathType = convertMathType(objArray[i].mathType);
+		document.getElementById(type).innerHTML = newMathType;
+		document.getElementById(time).innerHTML = objArray[i].time;
+	}
+
 }
 function convertMathType(type){
 	if (type == "+") { return "Addition";}

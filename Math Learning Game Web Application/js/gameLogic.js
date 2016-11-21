@@ -1,7 +1,6 @@
 
 if (window.location.pathname == "/gameRun.html") {
 	window.onload = function () {
-		console.log(user);
     	timer();
     	ajaxCall();
     	document.getElementById("levelNumber").textContent = difficultyLevelNumber;
@@ -9,18 +8,16 @@ if (window.location.pathname == "/gameRun.html") {
 	} 
 } 
 
+var userArray = [];
 var userInfo = localStorage.getItem("userInfo");
-console.log(userInfo);
 var user = JSON.parse(userInfo);	
 var difficultyLevelNumber = user.difficultyLevel;	
 var mathType = user.mathType;
 var username = user.userName;
 
 document.getElementById("submitAnswer-Button").addEventListener("click", function() {answerResult(num1,num2,mathType,userAnswer.value)});
+document.getElementById("game-end-main-menu-button").addEventListener("click", function() {window.location.href = "/index.html";});
 document.getElementById("main-Menu-Button").addEventListener("click", function() {window.location.href = "/index.html";});
-document.getElementById("pop-Up-Button").addEventListener("click", function() {
-	window.location.href = "/gameRun.html#openModal";
-});
 document.getElementById("submit-Score-Button").addEventListener("click", function() {
      storeHighScore();
      window.location.href = "/index.html";
@@ -58,15 +55,22 @@ function getMathTypeButton() {
 }
 function storeHighScore(){
     user.time = secondsElapsed.toString();
-    console.log(user);
+	user.score = (Math.round(weightScore()*100)/100).toString();
     var gameInfo;
-    if (localStorage.getItem("highscoresList") == null){
-          gameInfo = username + " " + difficultyLevelNumber + " " + mathType + " " + user.time + " " + (Math.round(weightScore()*100)/100).toString();
+	var getLocal = localStorage.getItem("highscoresList");
+    if (getLocal == null){
+			userArray.push(user);
+          gameInfo = JSON.stringify(userArray);
     } else{
-      gameInfo = localStorage.getItem("highscoresList") + "," + username + " " + difficultyLevelNumber + " " + mathType + " " + user.time + " " + (Math.round(weightScore()*100)/100).toString();   
+		//localStorage.clear();
+		var scoreList = JSON.parse(getLocal);
+		scoreList.push(user);
+		userArray = scoreList;
+		gameInfo = JSON.stringify(userArray);
+		
+      //gameInfo = localStorage.getItem("highscoresList") + "," + username + " " + difficultyLevelNumber + " " + mathType + " " + user.time + " " + (Math.round(weightScore()*100)/100).toString();   
     }
     localStorage.setItem("highscoresList", gameInfo);
-    console.log(localStorage.getItem("highscoresList"));
 }
 function getNumberMathType(type){
     if (type == "+") { return 1}
