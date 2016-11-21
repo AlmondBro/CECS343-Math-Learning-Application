@@ -23,13 +23,13 @@ document.getElementById("pop-Up-Button").addEventListener("click", function() {
 });
 document.getElementById("submit-Score-Button").addEventListener("click", function() {
      storeHighScore();
-     setTimeout(function() {window.location.href = "/index.html"}, 5000);
+     window.location.href = "/index.html";
      });
 
 var diff = parseInt(difficultyLevelNumber);
 var goalPoints = (15 * diff) + 15;
 document.getElementById("goalPoints").innerHTML = goalPoints.toString();
-var timeLeft = 10;//(40 + (diff * 15));
+var timeLeft = (40 + (diff * 15));
 var secondsElapsed = 0;
 var counter = setInterval(timer, 100); 
 var num1;
