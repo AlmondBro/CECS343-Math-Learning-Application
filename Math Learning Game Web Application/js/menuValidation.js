@@ -144,22 +144,28 @@ function compare(user1, user2){
     return 0;
 }
 function getTop10(){
-    objArray.sort(compare);
+	if (objArray != null){
+		objArray.sort(compare);
+	}
 }
 
 function populateHighScores() {
 	getTop10();
-	for (var i=0; i<objArray.length; i++){
-		if (i == 10) {return;}
-		var name = "user-name"+i;
-		var lvl = "user-lvl"+i;
-		var type = "user-type"+i;
-		var time = "user-time"+i;
-		document.getElementById(name).innerHTML = objArray[i].userName;
-		document.getElementById(lvl).innerHTML = objArray[i].difficultyLevel;
-        var newMathType = convertMathType(objArray[i].mathType);
-		document.getElementById(type).innerHTML = newMathType;
-		document.getElementById(time).innerHTML = objArray[i].time;
+	if (objArray != null){
+		for (var i=0; i<objArray.length; i++){
+			if (i == 10) {return;}
+				if (objArray[i] != null){
+					var name = "user-name"+i;
+					var lvl = "user-lvl"+i;
+					var type = "user-type"+i;
+					var time = "user-time"+i;
+					document.getElementById(name).innerHTML = objArray[i].userName;
+					document.getElementById(lvl).innerHTML = objArray[i].difficultyLevel;
+       				var newMathType = convertMathType(objArray[i].mathType);
+					document.getElementById(type).innerHTML = newMathType;
+					document.getElementById(time).innerHTML = objArray[i].time;
+		}
+	}
 	}
 
 }
