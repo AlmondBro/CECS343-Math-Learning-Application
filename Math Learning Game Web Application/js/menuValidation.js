@@ -24,7 +24,6 @@ var subtractionButton = document.getElementById("subtraction-Button");
 var multiplicationButton = document.getElementById("multiplication-Button");
 var divisionButton = document.getElementById("division-Button");
 document.getElementById("highscore-Button").addEventListener("click", function() {
-	getTop10();
 	populateHighScores();
 	window.location.href = "/index.html#openModal";
 });
@@ -145,12 +144,11 @@ function compare(user1, user2){
     return 0;
 }
 function getTop10(){
-	console.log(objArray[0].score);
-	console.log(objArray[0].userName);
     objArray.sort(compare);
 }
 
 function populateHighScores() {
+	getTop10();
 	for (var i=0; i<objArray.length; i++){
 		if (i == 10) {return;}
 		var name = "user-name"+i;
