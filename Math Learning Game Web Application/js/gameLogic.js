@@ -220,7 +220,7 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 function answerResult(number1, number2, mathType, userAnswer) {
     if (userAnswerChecker(number1,number2,mathType,userAnswer)) {
         difficultyLevelNumber = parseInt(difficultyLevelNumber);
-    	currentPoints += (6 * difficultyLevelNumber + (difficultyLevelNumber + 2));
+    	currentPoints += (5 * difficultyLevelNumber + (difficultyLevelNumber + 2));
         difficultyLevelNumber = difficultyLevelNumber.toString();
     	currentPointsDOMElement.textContent = currentPoints.toString();
 		if (currentPoints >= goalPoints) {
