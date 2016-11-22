@@ -1,81 +1,133 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>CECS343 Math Learning Game</title>
-		<meta http-equiv="content-language" content="en-us" />
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<link href="css/style.css" rel="stylesheet" type="text/css">  <!-- Default stylesheet -->
-		<link href="css/bootstrap-grid-system-only.min.css" rel="stylesheet" type="text/css"> <!-- Bootstrap Grid System -->
-	    <link href="https://fonts.googleapis.com/css?family=Asap|Butterfly+Kids|Cedarville+Cursive|Rosario|Annie+Use+Your+Telescope|Cabin+Sketch|Calligraffitti|Caveat|Caveat+Brush" rel="stylesheet" type="text/css">  <!-- Google fonts -->
-		<meta name="description" content="This is the term project for the California State University Class CECS343 (Introduction to Software Engineering). This is a simple app game that consists of math questions that are to be answered in a particular amount of time. Users can select their level of difficulty on addition, subtraction, multiplication, and division. The game is oriented towards young children, so there are no algebra questions.">			
-	</head>
-	
-	<body>
-		<div class="container">
-			<section class="paper">
-				<article class="head">
-					<center><article contenteditable="true"><h3 id="welcome-Slogan">Try to Reach the Goal Points</br> As Fast As You Can! (:</h3></article></center>
-				</article> <!-- /.head -->
+<head>
+<title>CECS343 Math Learning Game</title>
+<meta name="author" content="Juan David Lopez, Michael Sanfelippo, Pedro Santiago">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-language" content="en-us" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<!-- Default stylesheet -->
+<link href="css/bootstrap-grid-system-only.min.css" rel="stylesheet" type="text/css">
+<!-- Bootstrap Grid System -->
+<link href="https://fonts.googleapis.com/css?family=Asap|Butterfly+Kids|Cedarville+Cursive|Rosario|Annie+Use+Your+Telescope|Cabin+Sketch|Calligraffitti|Caveat|Caveat+Brush" rel="stylesheet" type="text/css">
+<!-- Google fonts -->
+<meta name="description" content="This is the term project for the California State University Class CECS343 (Introduction to Software Engineering). This is a simple app game that consists of math questions that are to be answered in a particular amount of time. Users can select their level of difficulty on addition, subtraction, multiplication, and division. The game is oriented towards young children, so there are no algebra questions.">
+</head>
+<body>
 
-				<p>&nbsp;</p> <!-- Breakspace -->
+<!-- Model popup dialog box-->
+<div id="openModal" class="modalDialog">
+	<div id="pop-up">
+        <h1 id="endMsg"></h1>
+        <table> <!--Table-->
+        	<tr>
+            	<th>Username</th>
+                <th>Level</th>
+                <th>Math Type</th>
+                <th>Time</th>
+            </tr>
+            <tr>
+            	<td id="user-name"></td>
+                <td id="user-lvl"></td>
+                <td id="user-type"></td>
+                <td id="user-time"></td>
+            </tr>
+        </table>
+
+        <div id="pop-up-buttons">
+        	<button class="mathType-button main-menu-button" id="game-end-main-menu-button">Main Menu</button>
+            </br>
+        	<button class="mathType-button" id="submit-Score-Button">Submit Score</button>
+        </div> <!-- /#pop-up-buttons -->
+	</div> <!-- /#pop-up -->
+</div> <!-- Model popup dialog box END-->
+
+<div class="container">
+  <section class="paper">
+    <article class="head">
+      <center>
+        <article contenteditable="false">
+          <h3 id="welcome-Slogan">Try to Reach the Goal Points</br>
+            As Fast As You Can! (:</h3>
+        </article>
+      </center>
+    </article><!-- /.head -->
+    
+    <p>&nbsp;</p> <!-- Breakspace -->
+    
+    <center>
+      <section class="currentGameInfo row">
+        <div class="col-md-4">
+          <button class="mathType-button" id="levelNumber-Button">Level: <span id="levelNumber"></span></button>
+        </div> <!-- /.col-md-4 -->
+        
+        <div class="col-md-4">
+          <button class="mathType-button" id="addition-Button2">Addition (+)</button>
+          <button class="mathType-button" id="subtraction-Button2">Subtraction (-)</button>
+          <button class="mathType-button" id="multiplication-Button2">Multiplication (&times;)</button>
+          <button class="mathType-button" id="division-Button2">Division (&divide;)</button>
+        </div> <!-- /.col-md-4 -->
+        
+        <div class="col-md-4">
+          <div class="timer">
+            <p>Time Left: <span id="secondsLeft"></span></p>
+          </div> <!-- /.timer --> 
+        </div> <!-- /.col-md-4 --> 
+      </section> <!-- /.currentGameInfo row --> 
+    </center> 
+
+    </br> <!-- Breakspace -->
+    <hr class="dottedScissorsLine"> <!-- Dotted Scissors Line -->
+    </br> <!-- Breakspace -->
+    
+    <center>
+      <div class="row no-gutter questionGeneratedRow ">
+        <div class="col-md-6">
+          <span class="title">Question: </span>
+        </div><!-- col-md-12 --> 
 				
-			<center><section class="currentGameInfo row">
-				<div class="col-md-4">
-					<button class="mathType-button" id="levelNumber-Button">Level: <span id="levelNumber"></span></button>
-				</div> <!-- /.col-md-4 -->
-			
-			<div class="col-md-4">
-					<button class="mathType-button" id="addition-Button2">Addition (+)</button>
-					<button class="mathType-button" id="subtraction-Button2">Subtraction (-)</button>
-					<button class="mathType-button" id="multiplication-Button2">Multiplication (&times;)</button>
-					<button class="mathType-button" id="division-Button2">Division (&divide;)</button>
-			</div> <!-- /.col-md-4 -->
-			
-				<div class="col-md-4">
-					<div class="timer">
-						<p>Time Left: <span id="secondsLeft"></span></p> 
-					</div> <!-- /.timer -->
-				</div> <!-- /.col-md-4 -->
-			</section></center> <!-- /.currentGameInfo row -->
-			
-			</br></br> <!-- Breakspace -->	
-			
-			<hr class="dottedScissorsLine">
-			</br> <!-- Breakspace -->	
-			
-			<center><div class="row questionGeneratedRow">
-				<div class="col-md-12">
-					<p><span class="title">Question: </span><span id="generatedQuestion"></span></p>
-				</div> <!-- col-md-12 -->
-			</div></center><!-- row questionGeneratedRow -->
-			
-			<center><form class="row" id="userAnswerForm">
-					<div class="col-md-6">
-						<label id="answerLabel" for="answerInputInputBox">Answer:</label>
-						<input id="answerInputInputBox" type="number" name="answer" rows="5"/>
-					</div> <!-- /.col-md-6 --> 
-					
-					<div class="col-md-6 submitAnswerButtonCol">
-						<!--<button class="mathType-button" id="submitAnswer-Button">Submit Answer</button> -->
-						<input class="mathType-button" id="submitAnswer-Button" value="Submit Answer" type="button" />
-					</div> <!-- /.col-md-6 --> 	
-					</form> <!-- /.row -->
-			</center>			
+        <div class="col-md-6">
+  				<span id="generatedQuestion"></span>
+        </div> <!-- /.col-md-6 -->
+      </div> <!-- row questionGeneratedRow -->
+    </center>
+  
+    <center>
+      <form class="row" id="userAnswerForm" onSubmit="return false">
+        <div class="col-md-6">
+          <label id="answerLabel" for="answerInputInputBox">Answer:</label>
+          <input id="answerInputInputBox" type="number" name="answer" rows="5" autocomplete="off"/>
+          <img class="responsiveImg" id="checkMarkWin" src="\assets\images\v.png" />
+          <img class="responsiveImg" id="checkXLose" src="\assets\images\x.png"/>
+        </div><!-- /.col-md-6 -->
 
-			</br> <!-- Breakspace -->
-			
-			<center><div class="row questionGeneratedRow">
-				<div class="col-md-6">
-					<p class="title"><span class="title">Current Points: </span> <span id="currentPoints">0</span></p>
-				</div> <!-- col-md-12 -->
-			
-				<div class="col-md-6">
-					<p class="title"><span class="title">Goal Points: </span> <span id="generatedQuestion">75</span></p>		
-				</div> <!-- col-md-12 -->
-			</div></center><!-- row questionGeneratedRow -->
-			
-			</section> <!-- /.paper --> 
-		</div> <!-- /.container -->
-		<script src="js/gameLogic.js" type="text/javascript" language="javascript"></script>		
-	</body>
+        <div class="col-md-6 submitAnswerButtonCol"> 
+          <input class="mathType-button" id="submitAnswer-Button" value="Submit Answer" type="submit" />
+        </div> <!-- /.col-md-6 -->
+      </form><!-- /.row -->
+    </center>
+    </br><!-- Breakspace -->
+    
+    <center>
+      <div class="row questionGeneratedRow">
+        <div class="col-md-6">
+          <p class="title"><span class="title">Current Points: </span> <span id="currentPoints">0</span></p>
+        </div><!-- col-md-12 -->
+        
+        <div class="col-md-6">
+          <p class="title"><span class="title">Goal Points: </span> <span id="goalPoints"></span></p>
+        </div> <!-- col-md-12 --> 
+      </div>
+    </center> <!-- row questionGeneratedRow --> 
+    
+    <center>
+    	<button class="mathType-button main-menu-button" id="main-Menu-Button">Main Menu</button>
+    </center>
+    
+  </section><!-- /.paper --> 
+</div> <!-- /.container --> 
+<script src="js/gameLogic.js" type="text/javascript" language="javascript"></script>
+</body>
 </html>
