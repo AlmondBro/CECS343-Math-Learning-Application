@@ -2,9 +2,12 @@
 <html>
 <head>
 <title>CECS343 Math Learning Game</title>
+<<<<<<< HEAD
 <meta name="author" content="Juan David Lopez, Michael Sanfelippo, Pedro Santiago">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+=======
+>>>>>>> origin/master
 <meta http-equiv="content-language" content="en-us" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -16,12 +19,21 @@
 <meta name="description" content="This is the term project for the California State University Class CECS343 (Introduction to Software Engineering). This is a simple app game that consists of math questions that are to be answered in a particular amount of time. Users can select their level of difficulty on addition, subtraction, multiplication, and division. The game is oriented towards young children, so there are no algebra questions.">
 </head>
 <body>
+<<<<<<< HEAD
 
 <!-- Model popup dialog box-->
 <div id="openModal" class="modalDialog">
 	<div id="pop-up">
         <h1 id="endMsg"></h1>
         <table> <!--Table-->
+=======
+<!-- Model popup dialog box-->
+<div id="openModal" class="modalDialog">
+	<div id="pop-up">
+		<!--Table-->
+        <h1 id="endMsg"></h1>
+        <table>
+>>>>>>> origin/master
         	<tr>
             	<th>Username</th>
                 <th>Level</th>
@@ -35,6 +47,7 @@
                 <td id="user-time"></td>
             </tr>
         </table>
+<<<<<<< HEAD
 
         <div id="pop-up-buttons">
         	<button class="mathType-button main-menu-button" id="game-end-main-menu-button">Main Menu</button>
@@ -44,6 +57,16 @@
 	</div> <!-- /#pop-up -->
 </div> <!-- Model popup dialog box END-->
 
+=======
+        <div id="pop-up-buttons">
+        	<button class="mathType-button main-menu-button" id="game-end-main-menu-button">Main Menu</button>
+            <div id="pop-up-button-spacer"></div>
+        	<button class="mathType-button" id="submit-Score-Button">Submit Score</button>
+        </div>
+	</div>
+</div>
+<!-- Model popup dialog box END-->
+>>>>>>> origin/master
 <div class="container">
   <section class="paper">
     <article class="head">
@@ -53,26 +76,45 @@
             As Fast As You Can! (:</h3>
         </article>
       </center>
+<<<<<<< HEAD
     </article><!-- /.head -->
     
     <p>&nbsp;</p> <!-- Breakspace -->
+=======
+    </article>
+    <!-- /.head -->
+    
+    <p>&nbsp;</p>
+    <!-- Breakspace -->
+>>>>>>> origin/master
     
     <center>
       <section class="currentGameInfo row">
         <div class="col-md-4">
           <button class="mathType-button" id="levelNumber-Button">Level: <span id="levelNumber"></span></button>
+<<<<<<< HEAD
         </div> <!-- /.col-md-4 -->
+=======
+        </div>
+        <!-- /.col-md-4 -->
+>>>>>>> origin/master
         
         <div class="col-md-4">
           <button class="mathType-button" id="addition-Button2">Addition (+)</button>
           <button class="mathType-button" id="subtraction-Button2">Subtraction (-)</button>
           <button class="mathType-button" id="multiplication-Button2">Multiplication (&times;)</button>
           <button class="mathType-button" id="division-Button2">Division (&divide;)</button>
+<<<<<<< HEAD
         </div> <!-- /.col-md-4 -->
+=======
+        </div>
+        <!-- /.col-md-4 -->
+>>>>>>> origin/master
         
         <div class="col-md-4">
           <div class="timer">
             <p>Time Left: <span id="secondsLeft"></span></p>
+<<<<<<< HEAD
           </div> <!-- /.timer --> 
         </div> <!-- /.col-md-4 --> 
       </section> <!-- /.currentGameInfo row --> 
@@ -94,11 +136,40 @@
       </div> <!-- row questionGeneratedRow -->
     </center>
   
+=======
+          </div>
+          <!-- /.timer --> 
+        </div>
+        <!-- /.col-md-4 --> 
+      </section>
+    </center>
+    <!-- /.currentGameInfo row --> 
+    
+    </br>
+    </br>
+    <!-- Breakspace -->
+    
+    <hr class="dottedScissorsLine">
+    </br>
+    <!-- Breakspace -->
+    
+    <center>
+      <div class="row questionGeneratedRow">
+        <div class="col-md-12">
+          <p><span class="title">Question: </span><span id="generatedQuestion"></span></p>
+        </div>
+        <!-- col-md-12 --> 
+      </div>
+    </center>
+    <!-- row questionGeneratedRow -->
+    
+>>>>>>> origin/master
     <center>
       <form class="row" id="userAnswerForm" onSubmit="return false">
         <div class="col-md-6">
           <label id="answerLabel" for="answerInputInputBox">Answer:</label>
           <input id="answerInputInputBox" type="number" name="answer" rows="5" autocomplete="off"/>
+<<<<<<< HEAD
           <img class="responsiveImg" id="checkMarkWin" src="\assets\images\v.png" />
           <img class="responsiveImg" id="checkXLose" src="\assets\images\x.png"/>
         </div><!-- /.col-md-6 -->
@@ -109,11 +180,30 @@
       </form><!-- /.row -->
     </center>
     </br><!-- Breakspace -->
+=======
+          <img class="responsiveImg" id="checkMarkWin" src="\assets\images\v.png"</img>
+          <img class="responsiveImg" id="checkXLose" src="\assets\images\x.png"</img>
+        </div>
+        <!-- /.col-md-6 -->
+        
+        
+        <div class="col-md-6 submitAnswerButtonCol"> 
+          <!--<button class="mathType-button" id="submitAnswer-Button">Submit Answer</button> -->
+          <input class="mathType-button" id="submitAnswer-Button" value="Submit Answer" type="submit" />
+        </div>
+        <!-- /.col-md-6 -->
+      </form>
+      <!-- /.row -->
+    </center>
+    </br>
+    <!-- Breakspace -->
+>>>>>>> origin/master
     
     <center>
       <div class="row questionGeneratedRow">
         <div class="col-md-6">
           <p class="title"><span class="title">Current Points: </span> <span id="currentPoints">0</span></p>
+<<<<<<< HEAD
         </div><!-- col-md-12 -->
         
         <div class="col-md-6">
@@ -128,6 +218,27 @@
     
   </section><!-- /.paper --> 
 </div> <!-- /.container --> 
+=======
+        </div>
+        <!-- col-md-12 -->
+        
+        <div class="col-md-6">
+          <p class="title"><span class="title">Goal Points: </span> <span id="goalPoints"></span></p>
+        </div>
+        <!-- col-md-12 --> 
+      </div>
+    </center>
+    <!-- row questionGeneratedRow --> 
+    
+    <div class="col-md-6">
+    	<button class="mathType-button main-menu-button" id="main-Menu-Button">Main Menu</button>
+    </div>
+    
+  </section>
+  <!-- /.paper --> 
+</div>
+<!-- /.container --> 
+>>>>>>> origin/master
 <script src="js/gameLogic.js" type="text/javascript" language="javascript"></script>
 </body>
 </html>
