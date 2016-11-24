@@ -17,7 +17,7 @@ var username = user.userName;
 
 document.getElementById("submitAnswer-Button").addEventListener("click", function() {answerResult(num1,num2,mathType,userAnswer.value)});
 document.getElementById("game-end-main-menu-button").addEventListener("click", function() {window.location.href = "/index.html";});
-document.getElementById("main-Menu-Button").addEventListener("click", function() {window.location.href = "/index.html";});
+document.getElementById("main-menu-button").addEventListener("click", function() {window.location.href = "/index.html";});
 document.getElementById("submit-Score-Button").addEventListener("click", function() {
      storeHighScore();
      window.location.href = "/index.html";
@@ -94,8 +94,10 @@ function timer() {
      return;
   } 
 
- document.getElementById("secondsLeft").textContent = timeLeft.toString();
+ var timeLeftInt = parseInt(timeLeft, 10); //Convert time displayed to an integer to remove lag
+ document.getElementById("secondsLeft").textContent = timeLeftInt.toString();   
 } 
+
 function convertMathType(type){
 	if (type == "+") { return "Addition";}
 	else if (type == "-") { return "Subtraction";}
