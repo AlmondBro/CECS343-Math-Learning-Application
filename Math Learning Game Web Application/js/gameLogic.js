@@ -2,9 +2,10 @@
 if (window.location.pathname == "/gameRun.html") {
 	window.onload = function () {
     	timer();
-    	ajaxCall();
-    	document.getElementById("levelNumber").textContent = difficultyLevelNumber;
+    	generateEquation();
+    	document.getElementById("levelNumber").textContent = difficultyLevelNumber.toString();
     	getMathTypeButton(); 
+    	document.forms['userAnswerForm'].elements['answerInputInputBox'].focus(); //Have the  focus be on the answer input box in order for the user to be able to answer questions rapidly from the start.
 	} 
 } 
 
@@ -14,6 +15,12 @@ var user = JSON.parse(userInfo);
 var difficultyLevelNumber = user.difficultyLevel;	
 var mathType = user.mathType;
 var username = user.userName;
+
+//Keep focus on the answer input box while keeping the page from reloading when entering the answer.
+document.forms['userAnswerForm'].onsubmit = function() {
+														document.forms['userAnswerForm'].elements['answerInputInputBox'].focus(); 
+														 return false;
+														};
 
 document.getElementById("submitAnswer-Button").addEventListener("click", function() {answerResult(num1,num2,mathType,userAnswer.value)});
 document.getElementById("game-end-main-menu-button").addEventListener("click", function() {window.location.href = "/index.html";});
@@ -25,10 +32,10 @@ document.getElementById("submit-Score-Button").addEventListener("click", functio
 
 var diff = parseInt(difficultyLevelNumber);
 var goalPoints = (15 * diff) + 15;
-document.getElementById("goalPoints").innerHTML = goalPoints.toString();
+document.getElementById("goalPoints").textContent = goalPoints.toString();
 var timeLeft = (40 + (diff * 15));
 var secondsElapsed = 0;
-var counter = setInterval(timer, 100); 
+var counter = window.setInterval(timer, 100); 
 var num1;
 var num2; 
 var userAnswer= document.getElementById("answerInputInputBox");
@@ -53,6 +60,7 @@ function getMathTypeButton() {
 		document.getElementById("division-Button2").style.display = "inline-block";
 	} 
 }
+
 function storeHighScore(){
     user.time = secondsElapsed.toString();
 	user.score = (Math.round(weightScore()*100)/100).toString();
@@ -72,15 +80,18 @@ function storeHighScore(){
     }
     localStorage.setItem("highscoresList", gameInfo);
 }
+
 function getNumberMathType(type){
     if (type == "+") { return 1}
 	else if (type == "-") { return .75;}
 	else if (type == "*") { return .5; }
 	else { return .25; }
 }
+
 function weightScore(){
     return getNumberMathType(mathType) * secondsElapsed + parseInt(difficultyLevelNumber)*2;
 }
+
 function timer() {
   timeLeft -= 0.1;
   timeLeft = Math.round(timeLeft * 100) / 100;
@@ -93,9 +104,8 @@ function timer() {
      clearInterval(counter);
      return;
   } 
-
- var timeLeftInt = parseInt(timeLeft, 10); //Convert time displayed to an integer to remove lag
- document.getElementById("secondsLeft").textContent = timeLeftInt.toString();   
+	var timeLeftInt = parseInt(timeLeft); //Convert time displayed to an integer to remove lag
+	document.getElementById("secondsLeft").textContent = timeLeftInt.toString();   
 } 
 
 function convertMathType(type){
@@ -108,15 +118,15 @@ function convertMathType(type){
 	
 function gameEnd(winOrLose) {
 	if(winOrLose) {
-		document.getElementById("endMsg").innerHTML = "You Won!";
+		document.getElementById("endMsg").textContent = "You Won!";
 	}
 	else {
-		document.getElementById("endMsg").innerHTML = "You Lost!";
+		document.getElementById("endMsg").textContent = "You Lost!";
 	}
-	document.getElementById("user-name").innerHTML = username.length > 9 ? username.substring(0,8)+"..." : username;
-	document.getElementById("user-lvl").innerHTML = difficultyLevelNumber;
-	document.getElementById("user-type").innerHTML = convertMathType(mathType);
-	document.getElementById("user-time").innerHTML = secondsElapsed.toString();
+	document.getElementById("user-name").textContent = username.length > 9 ? username.substring(0,8)+"..." : username;
+	document.getElementById("user-lvl").textContent = difficultyLevelNumber.toString();
+	document.getElementById("user-type").textContent = convertMathType(mathType).toString();
+	document.getElementById("user-time").textContent = secondsElapsed.toString();
 	window.location.href = "/gameRun.html#openModal";
 }
 
@@ -239,7 +249,7 @@ function answerResult(number1, number2, mathType, userAnswer) {
  		} 
  		currentPointsDOMElement.textContent = currentPoints.toString();
  	}      
-    ajaxCall();
+    generateEquation();
 } 
 
 function displayCorrectnessImg(TorF) {
@@ -251,12 +261,15 @@ function displayCorrectnessImg(TorF) {
 		checkImg = document.getElementById("checkXLose");
 	}
 		fadeIn(checkImg, 700);
-		setTimeout(function () {fadeOut(checkImg, 700);}, 800);
+		setTimeout(function () {
+								fadeOut(checkImg, 700);
+								}, 
+			   800);
 }
 
 function getEquation(twoNumbers) {
 	var currentEquation = twoNumbers[0] + " " +  getMathType() + " " + twoNumbers[1] + "    = ";
-	return currentEquation;
+	return currentEquation.toString();
 } 
 
 function runActualGame() {
@@ -327,20 +340,30 @@ function fadeOut( elem, ms )
   }
 }
 
-function ajaxCall() {
-    var request;
-    if (window.XMLHttpRequest) { 
-        request = new XMLHttpRequest();
-    } else { 
-        request = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    request.open('POST', 'gameRun.html', true);
-    request.onreadystatechange = function() {
-        if ((request.readyState === 4) && (request.status === 200)) {
-            document.getElementById("generatedQuestion").textContent = getEquation(generateTwoRandomNumbers(difficultyLevelNumber));
-            runActualGame();
-        } 
-    } 
-    request.send();
-} 
+function generateEquation() {
+	document.getElementById("generatedQuestion").textContent = getEquation(generateTwoRandomNumbers(difficultyLevelNumber));
+ 	runActualGame();
+} //end generateEquation() function
 
+/* Polyfill for Internet Explorer 8 to suppor the faster textContent property. 
+   If IE8 is detected, innerText is used instead of textContent. innerText
+   is supproted by IE8: 
+   Source: https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent */
+if (Object.defineProperty 
+  && Object.getOwnPropertyDescriptor 
+  && Object.getOwnPropertyDescriptor(Element.prototype, "textContent") 
+  && !Object.getOwnPropertyDescriptor(Element.prototype, "textContent").get) {
+  (function() {
+    var innerText = Object.getOwnPropertyDescriptor(Element.prototype, "innerText");
+    Object.defineProperty(Element.prototype, "textContent",
+     {
+       get: function() {
+         return innerText.get.call(this);
+       },
+       set: function(s) {
+         return innerText.set.call(this, s);
+       }
+     }
+   );
+  })();
+}

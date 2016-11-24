@@ -8,14 +8,12 @@ var objArray = JSON.parse(userArray);
 var difficultyLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
 var difficultyLevelRadioButton_Checked = document.querySelector('input[name="level-options"]:checked');
 
-
 function difficultyLevelRadioButtonChecked() {
 	var difficultyLevelRadioButtonOption;
 		difficultyLevelRadioButtonOption = document.querySelector('input[name="level-options"]:checked');
 
 	return difficultyLevelRadioButtonOption;
 } 
-
 
 /* Get the type of math buttons */
 var mathTypeButton = document.getElementsByClassName("mathType-button");
@@ -111,7 +109,6 @@ function isEmpty(str){
     return !str.replace(/^\s+/g, '').length; 
 } 
 
-
 /* Checks if a difficulty level has been selected or not. */
 function checkDifficultyLevel() {
 	var diffLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
@@ -136,6 +133,7 @@ function checkDifficultyLevel() {
 function returnDifficultyLevel() {
 	return difficultyLevelRadioButton_Checked.value;
 }
+
 function compare(user1, user2){
     var data1 = user1.score;
     var data2 = user2.score;
@@ -143,6 +141,7 @@ function compare(user1, user2){
     if (parseInt(data1) > parseInt(data2)) { return 1;}
     return 0;
 }
+
 function getTop10(){
 	if (objArray != null){
 		objArray.sort(compare);
@@ -150,28 +149,52 @@ function getTop10(){
 }
 
 function populateHighScores() {
-	getTop10();
-	if (objArray != null){
-		for (var i=0; i<objArray.length; i++){
-			if (i == 10) {return;}
-				if (objArray[i] != null){
-					var name = "user-name"+i;
-					var lvl = "user-lvl"+i;
-					var type = "user-type"+i;
-					var time = "user-time"+i;
-					document.getElementById(name).innerHTML = objArray[i].userName;
-					document.getElementById(lvl).innerHTML = objArray[i].difficultyLevel;
-       				var newMathType = convertMathType(objArray[i].mathType);
-					document.getElementById(type).innerHTML = newMathType;
-					document.getElementById(time).innerHTML = objArray[i].time;
-		}
-	}
-	}
-
+    getTop10();
+    if (objArray != null) {
+        for (var i = 0; i < objArray.length; i++) {
+            if (i == 10) {
+                return; }
+            if (objArray[i] != null) {
+                var name = "user-name" + i;
+                var lvl = "user-lvl" + i;
+                var type = "user-type" + i;
+                var time = "user-time" + i;
+                document.getElementById(name).textContent = objArray[i].userName;
+                document.getElementById(lvl).textContent = objArray[i].difficultyLevel;
+                var newMathType = convertMathType(objArray[i].mathType);
+                document.getElementById(type).textContent = newMathType;
+                document.getElementById(time).textContent = objArray[i].time;
+            }
+        }
+    }
 }
+
 function convertMathType(type){
 	if (type == "+") { return "Addition";}
 	else if (type == "-") { return "Subtraction";}
 	else if (type == "*") { return "Multiplication"; }
 	else { return "Division"; }
+}
+
+/* Polyfill for Internet Explorer 8 to suppor the faster textContent property. 
+   If IE8 is detected, innerText is used instead of textContent. innerText
+   is supproted by IE8: 
+   Source: https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent */
+if (Object.defineProperty 
+  && Object.getOwnPropertyDescriptor 
+  && Object.getOwnPropertyDescriptor(Element.prototype, "textContent") 
+  && !Object.getOwnPropertyDescriptor(Element.prototype, "textContent").get) {
+  (function() {
+    var innerText = Object.getOwnPropertyDescriptor(Element.prototype, "innerText");
+    Object.defineProperty(Element.prototype, "textContent",
+     {
+       get: function() {
+         return innerText.get.call(this);
+       },
+       set: function(s) {
+         return innerText.set.call(this, s);
+       }
+     }
+   );
+  })();
 }
