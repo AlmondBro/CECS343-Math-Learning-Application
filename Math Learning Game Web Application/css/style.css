@@ -2,7 +2,7 @@ html, body {
 	height: 100%;
 }
 body {
-	font-family: normal 16px/1.5 "Asap", arial, sans-serif;
+	font-family: normal 16px/1.5 "Asap", sans-serif;
 	background-image: url('../assets/images/wood-desktop-bg.jpg');
 	background-size: cover  
 }
@@ -187,17 +187,17 @@ input[type="radio"]:checked + label span {
 	height: 77px;
 }
 #addition-Button {
-	background: url('../assets/images/Scribble-Button-Blue.png');
+	background-image: url('../assets/images/Scribble-Button-Blue.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
 #subtraction-Button {
-	background: url('../assets/images/Scribble-Button-Green.png');
+	background-image: url('../assets/images/Scribble-Button-Green.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
 #multiplication-Button {
-	background: url('../assets/images/Scribble-Button-Purple.png');
+	background-image: url('../assets/images/Scribble-Button-Purple.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
@@ -442,40 +442,71 @@ hr.dottedScissorsLine:after {
 	text-align: center;
 	font-size: 37px;
 }
-.modalDialog > div > h1 {
-	font-size: 90px;
+
+@media only screen and (min-width: 810px)  {
+	.userResultTable {
+		font-size: 1.5em;
+	}
+}
+
+
+@media only screen and (min-width: 676px) and (max-width: 809px) {
+	.userResultTable {
+		font-size: 1.3em;
+	}
+}
+
+
+@media only screen and (min-width: 450px) and (max-width: 675px) {
+	.userResultTable {
+		font-size: 1.0em;
+	}
+}
+
+@media only screen and (min-width: 409px) and (max-width: 449px) {
+	.userResultTable {
+		font-size: 0.9em;
+	}
 }
 
 @media only screen and (min-width: 332px) and (max-width: 408px) {
-
 	.userResultTable {
-		font-size: 0.8em;
+		font-size: 0.68em;
 	}
-
 }
 
 @media only screen and (max-width: 331px) {
-
 	.userResultTable {
-		font-size: 0.7em;
+		font-size: 0.65em;
 	}
-
 }
 
 .highScores-Table {
 	font-size: 1.65em;
 }
 
+.userResultTable th,
+.userResultTable td,
 .highScores-Table th,
 .highScores-Table td {
 	padding: 0 5px;
 }
 
 .modalDialog h1 {
-	font-size: 3em;
+	font-size: 2.8em;
 }
 
-@media only screen and (min-width: 374px) and (max-width: 600px) {
+@media only screen and (min-width: 374px) and (max-width: 415px) {
+	.highScores-Table {
+		font-size: 1.05em;
+	}
+
+	.modalDialog h1 {
+		font-size: 2.1em;
+	}
+}
+
+@media only screen and (min-width: 415px) and (max-width: 600px) {
 	.highScores-Table {
 		font-size: 1.2em;
 	}
@@ -516,8 +547,6 @@ hr.dottedScissorsLine:after {
 	}
 }
 
-
-
 table {
     border-collapse: collapse;
 	alignment-adjust: middle;
@@ -525,15 +554,19 @@ table {
 	margin-left: auto;
 	margin-right: auto;
 }
+
 th {
 	height: 60px;
 }
+
 td {
     height: 50px;
 }
+
 table, th, td {
     border: 3px solid black;
 }
+
 #pop-up-buttons {
 	padding-top: 5px;
 }
