@@ -146,55 +146,83 @@ function generateTwoRandomNumbers(difficultyLevel) {
 		case "1":
 			number1 = Math.floor((Math.random() * 21 ) );
 			number2 = Math.floor((Math.random() * 19 ) + 1 );
-			while ((number1 < number2) || (number1%number2 != 0)) {
+            if (mathType == "/"){
+                while ((number1 < number2) || (number1%number2 != 0)) {
 				number1 = Math.floor((Math.random() * 21 ) );
 				number2 = Math.floor((Math.random() * 19 ) + 1 );
-			}  
+			     }  
+            }
+            else {
+                while (number1 < number2) {
+				number1 = Math.floor((Math.random() * 21 ) );
+				number2 = Math.floor((Math.random() * 19 ) + 1 );
+			     }  
+            }
 			break;
 
 		case "2":
 			number1 = Math.floor((Math.random() * 80 ) + 20 );
 			number2 = Math.floor((Math.random() * 19 ) + 1 );
-            while(number1 % number2 != 0){
+            if (mathType == "/"){
+                while(number1 % number2 != 0){
                 number1 = Math.floor((Math.random() * 80 ) + 20 );
 		      	number2 = Math.floor((Math.random() * 19 ) + 1 );
             }
+            } 
 			break;	
 
 		case "3":
 			number1 = Math.floor((Math.random() * 290 ) + 10 );
 			number2 = Math.floor((Math.random() * 49 ) + 1 );
-			while ((number1 < number2) || (number1 % number2 != 0)) {
+            if (mathType == "/"){
+                while ((number1 < number2) || (number1 % number2 != 0)) {
 				number1 = Math.floor((Math.random() * 290 ) + 10 );
 				number2 = Math.floor((Math.random() * 49 ) + 1 );
-			} 
+			}    
+            } else{
+                while (number1 < number2) {
+				number1 = Math.floor((Math.random() * 290 ) + 10 );
+				number2 = Math.floor((Math.random() * 49 ) + 1 );
+			}    
+            }
 			break;
 
 		case "4":
 			number1 = Math.floor((Math.random() * 490 ) + 10 );
 			number2 = Math.floor((Math.random() * 69 ) + 20 );
-            while(number1 % number2 != 0){
+            if (mathType == "/"){
+             while(number1 % number2 != 0){
                 number1 = Math.floor((Math.random() * 490 ) + 10 );
 		      	number2 = Math.floor((Math.random() * 69 ) + 20 );
+            }   
             }
 			break;
 
 		case "5":
 			number1 = Math.floor((Math.random() * 900 ) + 100 );
 			number2 = Math.floor((Math.random() * 49) + 1 );
-            while (number1 % number2 != 0){
+            if (mathType == "/"){
+                while (number1 % number2 != 0){
                 number1 = Math.floor((Math.random() * 900 ) + 100 );
 		      	number2 = Math.floor((Math.random() * 49) + 1 );
+            }   
             }
 			break;	
 
 		case "6":
 			number1 = Math.floor((Math.random() * 900 ) + 100 );
 			number2 = Math.floor((Math.random() * 500 ) + 20 );
-			while((number1 < number2) || (number1 % number2 != 0)) {
+            if (mathType == "/"){
+             while((number1 < number2) || (number1 % number2 != 0)) {
+				number1 = Math.floor((Math.random() * 900 ) + 100 );
+				number2 = Math.floor((Math.random() * 500 ) + 20 );
+			}     
+            } else{
+                while (number1 < number2) {
 				number1 = Math.floor((Math.random() * 900 ) + 100 );
 				number2 = Math.floor((Math.random() * 500 ) + 20 );
 			}  
+            }
 			break;
 	} 
 	generatedNumbers[0] = number1;
