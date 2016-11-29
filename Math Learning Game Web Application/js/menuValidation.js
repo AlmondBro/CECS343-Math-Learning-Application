@@ -159,7 +159,8 @@ function populateHighScores() {
                 var lvl = "user-lvl" + i;
                 var type = "user-type" + i;
                 var time = "user-time" + i;
-                document.getElementById(name).textContent = objArray[i].userName;
+                var username = objArray[i].userName;
+                document.getElementById(name).textContent = username.length > 9 ? username.substring(0,8)+"..." : username;
                 document.getElementById(lvl).textContent = objArray[i].difficultyLevel;
                 var newMathType = convertMathType(objArray[i].mathType);
                 document.getElementById(type).textContent = newMathType;
