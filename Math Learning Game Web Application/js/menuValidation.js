@@ -8,6 +8,7 @@ var userArray = localStorage.getItem("highscoresList");
 var objArray = JSON.parse(userArray);
 /*Instantiates a radio button variable for the set difficulty.*/
 var difficultyLevelRadioButton = document.forms["difficultyLevelForm"]["level-options"];
+/* Stores the users level input into a variable. */
 var difficultyLevelRadioButton_Checked = document.querySelector('input[name="level-options"]:checked');
 /*
 *@return the difficulty that was selected by user is returned
@@ -162,7 +163,7 @@ function getTop10(){
 		objArray.sort(compare);
 	}
 }
-/*Fills out the list of highscores with the list of the users*/
+/*Fills out the list of highscores with the list of the top ten user scores*/
 function populateHighScores() {
     getTop10();
     if (objArray != null) {
@@ -192,7 +193,7 @@ function convertMathType(type){
 	else { return "Division"; }
 }
 
-/* Polyfill for Internet Explorer 8 to suppor the faster textContent property. 
+/* Polyfill for Internet Explorer 8 to support the faster textContent property. 
    If IE8 is detected, innerText is used instead of textContent. innerText
    is supproted by IE8: 
    Source: https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent */

@@ -1,49 +1,72 @@
-
+/* Initiates the game onto the screen */
 if (window.location.pathname == "/gameRun.html") {
 	window.onload = function () {
+		//Creates a timer visible to the user. 
     	timer();
+		//Generates an equation to the screen
     	generateEquation();
+		//Displays the levels number to the screen.
     	document.getElementById("levelNumber").textContent = difficultyLevelNumber.toString();
-    	getMathTypeButton(); 
-    	document.forms['userAnswerForm'].elements['answerInputInputBox'].focus(); //Have the  focus be on the answer input box in order for the user to be able to answer questions rapidly from the start.
+		//Returns the math type 
+		getMathTypeButton(); 
+		//Puts the focus on the answer box from its initial start
+    	document.forms['userAnswerForm'].elements['answerInputInputBox'].focus(); 
 	} 
 } 
-
+/* Array to hold different users */
 var userArray = [];
+/* Obtains userInfo and stores it into a variable. */
 var userInfo = localStorage.getItem("userInfo");
+/* Converts JSON object into a string. */
 var user = JSON.parse(userInfo);	
+/* Stores the difficulty based on the users choice. */
 var difficultyLevelNumber = user.difficultyLevel;	
+/* Stores the math type based on the users choice. */
 var mathType = user.mathType;
+/* Stores the name of the user into a variable. */
 var username = user.userName;
 
-//Keep focus on the answer input box while keeping the page from reloading when entering the answer.
+/* Keep focus on the answer input box while keeping the page from reloading when entering the answer. */
 document.forms['userAnswerForm'].onsubmit = function() {
 														document.forms['userAnswerForm'].elements['answerInputInputBox'].focus(); 
 														 return false;
 														};
-
+/* Listener for the submit button once the user has entered an answer. */
 document.getElementById("submitAnswer-Button").addEventListener("click", function() {answerResult(num1,num2,mathType,userAnswer.value)});
+/*Listener for the main menue button once the game has ended */
 document.getElementById("game-end-main-menu-button").addEventListener("click", function() {window.location.href = "/index.html";});
+/* Listener for the main menu button as you are playing the game. */
 document.getElementById("main-menu-button").addEventListener("click", function() {window.location.href = "/index.html";});
+/* Listener for the submission of the high score from the user. */
 document.getElementById("submit-Score-Button").addEventListener("click", function() {
      storeHighScore();
      window.location.href = "/index.html";
      });
-
+/* Stores the difficulty of the level in to a variable */
 var diff = parseInt(difficultyLevelNumber);
+/* Based on the difficulty the user chose, calculates an amount of goal points */
 var goalPoints = (15 * diff) + 15;
+/* Changes the goal points to a string to display. */
 document.getElementById("goalPoints").textContent = goalPoints.toString();
+/* Calculates the time left for the user */
 var timeLeft = (40 + (diff * 15));
+/* Instantiates the time to zero. */
 var secondsElapsed = 0;
+/* Instantiates a counter */
 var counter = window.setInterval(timer, 100); 
+/* Creates a variable to store the first number of the equation. */
 var num1;
+/* Creates a variable to store the second number of the equation. */
 var num2; 
+/* Obtains the users answer from the input box. */
 var userAnswer= document.getElementById("answerInputInputBox");
-
+/* Obtains the current points */
 var currentPointsDOMElement = document.getElementById("currentPoints");
+/* Instantiates the points to zero at the start of the game. */
 var currentPoints = 0;
-
+/* Obtains the math type from the game that is being played. */
 function getMathTypeButton() {
+	//Based on the operator that is played, will obtain the appropiate operator. 
 	if (mathType == "+") {
 		document.getElementById("addition-Button2").style.display = "inline-block";
 	} 
@@ -60,23 +83,23 @@ function getMathTypeButton() {
 		document.getElementById("division-Button2").style.display = "inline-block";
 	} 
 }
-
+/* Stores the highscore that is entered from the user that has finished playing the game. */
 function storeHighScore(){
+	//Obtains the time elapsed to determine highscore. 
     user.time = secondsElapsed.toString();
+	//Obtains the score of the user 
 	user.score = (Math.round(weightScore()*100)/100).toString();
     var gameInfo;
+	// Pushes the score of the user into the array
 	var getLocal = localStorage.getItem("highscoresList");
     if (getLocal == null){
 			userArray.push(user);
           gameInfo = JSON.stringify(userArray);
     } else{
-		//localStorage.clear();
 		var scoreList = JSON.parse(getLocal);
 		scoreList.push(user);
 		userArray = scoreList;
-		gameInfo = JSON.stringify(userArray);
-		
-      //gameInfo = localStorage.getItem("highscoresList") + "," + username + " " + difficultyLevelNumber + " " + mathType + " " + user.time + " " + (Math.round(weightScore()*100)/100).toString();   
+		gameInfo = JSON.stringify(userArray);   
     }
     localStorage.setItem("highscoresList", gameInfo);
 }
