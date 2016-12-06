@@ -1,5 +1,5 @@
 /* Get Dynamic Elements */
-//CECS 343
+//CECS 343 Math WebApp Game
 //Holds the input box element where the player types in his name
 var playerName = document.getElementById("nameInput");
 var userArray = localStorage.getItem("highscoresList");
