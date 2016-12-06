@@ -38,22 +38,22 @@ document.getElementById("highscore-Button").addEventListener("click", function()
 document.getElementById("main-menu-button").addEventListener("click", function() {window.location.href = "/index.html";});
 /*Added a listener for the addition button. By clicking on the desired math type, it passes the math chosen*/
 additionButton.addEventListener('click', function(event) {
-		console.log("Swag Value: " + additionButton.value);
+		console.log("Operator Value: " + additionButton.value);
         initializeGame(additionButton);
 	}); //end inline (click) function
 /*Action Listener for the subtraction button*/ 
 subtractionButton.addEventListener('click', function(event) {
-		console.log("Swag Value: " + subtractionButton.value);
+		console.log("Operator Value: " + subtractionButton.value);
 		initializeGame(subtractionButton);
 	}); //end inline (click) function
 /*Action Listener for the multiplication button*/
 multiplicationButton.addEventListener('click', function(event) {
-		console.log("Swag Value: " + multiplicationButton.value);
+		console.log("Operator Value: " + multiplicationButton.value);
 		initializeGame(multiplicationButton);
 	}); //end inline (click) function
 /*Added an action listener for the division button*/
 divisionButton.addEventListener('click', function(event) {
-		console.log("Swag Value: " + divisionButton.value);
+		console.log("Operator Value: " + divisionButton.value);
 		initializeGame(divisionButton);
 	}); //end inline (click) function
 
@@ -71,7 +71,7 @@ function initializeGame(mathTypeSpecificButton) {
    prompting the user to do select the said options.  */
 function validateInputs(mathTypeSpecificButton) {
 	//Sets the math type chose to the following variable
-	var mathTypeSwag = mathTypeSpecificButton;
+	var mathTypeOperator = mathTypeSpecificButton;
 	//Tests to see if the Players name has been filled out. If so, displays an error message
 	if (!checkPlayerName()) {
 		document.getElementById("nameInput-errorMessage").style.display = "inline-block";
@@ -92,15 +92,15 @@ function validateInputs(mathTypeSpecificButton) {
 		//Sets the appropiate variables to the users choices
 		userInfo.userName = playerName.value;
 		userInfo.difficultyLevel =  document.querySelector('input[name="level-options"]:checked').value;
-		userInfo.mathType = mathTypeSwag.value;
+		userInfo.mathType = mathTypeOperator.value;
 		userInfo.time = -1;
 
 		localStorage.setItem("userInfo", JSON.stringify(userInfo));
 		console.log("cookie = " + JSON.stringify(userInfo));
 		window.location.pathname = "/gameRun.html";
 
-		console.log("Math Value of button: " + mathTypeSwag.value);
-		console.log(typeof mathTypeSwag.value);
+		console.log("Math Value of button: " + mathTypeOperator.value);
+		console.log(typeof mathTypeOperator.value);
 	} 
 
 } 
