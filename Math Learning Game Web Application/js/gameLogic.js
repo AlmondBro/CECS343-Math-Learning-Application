@@ -103,18 +103,18 @@ function storeHighScore(){
     }
     localStorage.setItem("highscoresList", gameInfo);
 }
-
+/* Returns of the weight based on the math type */
 function getNumberMathType(type){
     if (type == "+") { return 1}
 	else if (type == "-") { return .75;}
 	else if (type == "*") { return .5; }
 	else { return .25; }
 }
-
+/* Computes the weght score based on the math, time, and difficulty of the level. */
 function weightScore(){
     return getNumberMathType(mathType) * secondsElapsed + parseInt(difficultyLevelNumber)*2;
 }
-
+/* Timer provided for the user to know how much time is left per level. */
 function timer() {
   timeLeft -= 0.1;
   timeLeft = Math.round(timeLeft * 100) / 100;
@@ -130,7 +130,7 @@ function timer() {
 	var timeLeftInt = parseInt(timeLeft); //Convert time displayed to an integer to remove lag
 	document.getElementById("secondsLeft").textContent = timeLeftInt.toString();   
 } 
-
+/* Converts the math type into a string for display */
 function convertMathType(type){
 	if (type == "+") { return "Addition";}
 	else if (type == "-") { return "Subtraction";}
@@ -138,7 +138,7 @@ function convertMathType(type){
 	else { return "Division"; }
 }
 
-	
+/* Determines if the user won or lost based on the completion of the equations. */
 function gameEnd(winOrLose) {
 	if(winOrLose) {
 		document.getElementById("endMsg").textContent = "You Won!";
@@ -159,13 +159,13 @@ function isNumberKey(evt){
         return false;
     return true;
 }
-
+/* Generates two random numbers based on the difficulty level and returns them through an array. */
 function generateTwoRandomNumbers(difficultyLevel) {
 	var generatedNumbers = []; 
 	var number1;
 	var number2;
 
-	switch (difficultyLevel) {
+	switch (difficultyLevel)	{
 		case "1":
 			number1 = Math.floor((Math.random() * 21 ) );
 			number2 = Math.floor((Math.random() * 19 ) + 1 );
@@ -254,7 +254,12 @@ function generateTwoRandomNumbers(difficultyLevel) {
     num2 = number2;
 	return generatedNumbers;
 } 
-
+/* Compares the users answer to the correct answer and returns a boolean
+ * @param number1 passes in the first number of the equation 
+ * @param number2 passes in the second numbers of the equation
+ * @param mathType passes in the math type of the equation
+ * @param userAnswer passes in the users answer to the equation
+*/
 function userAnswerChecker(number1, number2, mathType, userAnswer) {
 	var correctAnswer;
     var isCorrect;
