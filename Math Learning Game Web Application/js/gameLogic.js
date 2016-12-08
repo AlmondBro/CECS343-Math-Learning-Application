@@ -103,7 +103,9 @@ function storeHighScore(){
     }
     localStorage.setItem("highscoresList", gameInfo);
 }
-/* Returns of the weight based on the math type */
+/* Returns of the weight based on the math type 
+ * @param type passes in the operator
+*/
 function getNumberMathType(type){
     if (type == "+") { return 1}
 	else if (type == "-") { return .75;}
@@ -130,7 +132,9 @@ function timer() {
 	var timeLeftInt = parseInt(timeLeft); //Convert time displayed to an integer to remove lag
 	document.getElementById("secondsLeft").textContent = timeLeftInt.toString();   
 } 
-/* Converts the math type into a string for display */
+/* Converts the math type into a string for display 
+ * @param type passes in the operator that is being used 
+ */
 function convertMathType(type){
 	if (type == "+") { return "Addition";}
 	else if (type == "-") { return "Subtraction";}
@@ -138,7 +142,9 @@ function convertMathType(type){
 	else { return "Division"; }
 }
 
-/* Determines if the user won or lost based on the completion of the equations. */
+/* Determines if the user won or lost based on the completion of the equations. 
+ * Passes in the boolean value of whether the game was won or not. 
+*/
 function gameEnd(winOrLose) {
 	if(winOrLose) {
 		document.getElementById("endMsg").textContent = "You Won!";
@@ -152,14 +158,16 @@ function gameEnd(winOrLose) {
 	document.getElementById("user-time").textContent = secondsElapsed.toString();
 	window.location.href = "/gameRun.html#openModal";
 }
-
+/* Prevents a page refresh when a user hits enter. */
 function isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
     if (charCode > 31 && (charCode < 48 || charCode > 57))
         return false;
     return true;
 }
-/* Generates two random numbers based on the difficulty level and returns them through an array. */
+/* Generates two random numbers based on the difficulty level and returns them through an array. 
+ * @param difficultLevel Passes in the difficulty of the game that is being played. 
+*/
 function generateTwoRandomNumbers(difficultyLevel) {
 	var generatedNumbers = []; 
 	var number1;
@@ -281,10 +289,16 @@ function userAnswerChecker(number1, number2, mathType, userAnswer) {
 			isCorrect = userAnswer == correctAnswer;
 			break;
 	} 
-	displayCorrectnessImg(isCorrect);	//Display the "check" or "x" img if correct or not
+	//Display the "check" or "x" img if correct or not
+	displayCorrectnessImg(isCorrect);	
     return isCorrect;
 } 
-
+/*Based on the result of the users answer versus the correct one, increments/decrements points. 
+ *@param number1 passes in the first number or the equation to the answer checker
+ *@param number2 passes in the second nunber of the equation. 
+ *@param mathType passes in the operator that is being used. 
+ *@param userAnswer passes in the user that the answer was entered. 
+ */
 function answerResult(number1, number2, mathType, userAnswer) {
     if (userAnswerChecker(number1,number2,mathType,userAnswer)) {
         difficultyLevelNumber = parseInt(difficultyLevelNumber);
@@ -307,7 +321,7 @@ function answerResult(number1, number2, mathType, userAnswer) {
  	}      
     generateEquation();
 } 
-
+/* Displays a check mark if the user answers the equation correctly. */
 function displayCorrectnessImg(TorF) {
 	var checkImg;
 	if(TorF) {
@@ -322,18 +336,18 @@ function displayCorrectnessImg(TorF) {
 								}, 
 			   800);
 }
-
+/* Returns the equation that is being used as a string. */
 function getEquation(twoNumbers) {
 	var currentEquation = twoNumbers[0] + " " +  getMathType() + " " + twoNumbers[1] + "    = ";
 	return currentEquation.toString();
 } 
-
+/* if the users answer box is not blank, changes the users answer back to blank. */
 function runActualGame() {
 	if (userAnswer.value != "") {
 		userAnswer.value = "";
 	} 
 }
-
+/* Used to make the equations operator visually appealing. */
 function getMathType() {
 	if (mathType == "*") {
 		return "x";
@@ -347,7 +361,7 @@ function getMathType() {
 		return mathType;
 	} 
 } 
-
+/* Changes the fade in view of text. */
 function fadeIn(el, time) {
      el.style.opacity = 0;
 	 el.style.visibility = "visible";
@@ -365,7 +379,7 @@ function fadeIn(el, time) {
 
      tick();
 }
-
+/* Opposite to the fade in. */
 function fadeOut( elem, ms )
 {
   if( ! elem )
