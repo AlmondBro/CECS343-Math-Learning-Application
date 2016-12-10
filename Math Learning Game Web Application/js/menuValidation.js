@@ -59,7 +59,8 @@ divisionButton.addEventListener('click', function(event) {
 	}); //end inline (click) function
 
 /* Based upon the math type that was clicked on, the variable is passed in and will initialize the game
-   There is also a check to see if other parameters have been met */
+   There is also a check to see if other parameters have been met 
+ * @param mathTypeSpecificButton passes in the operator that was clicked by the user. */
 function initializeGame(mathTypeSpecificButton) {
 	var mathTypeValue = mathTypeSpecificButton;
 	console.log("A Math Type Button Was Clicked.");
@@ -69,7 +70,8 @@ function initializeGame(mathTypeSpecificButton) {
 
 /* Check to see if the player name input box is empty and/or
    a difficulty level hasn't been selected. Returns an error
-   prompting the user to do select the said options.  */
+   prompting the user to do select the said options.  
+ * @param mathTypeSpecificButton passes in the operator that was chosen. */
 function validateInputs(mathTypeSpecificButton) {
 	//Sets the math type chose to the following variable
 	var mathTypeOperator = mathTypeSpecificButton;
@@ -149,7 +151,9 @@ function checkDifficultyLevel() {
 function returnDifficultyLevel() {
 	return difficultyLevelRadioButton_Checked.value;
 }
-/*compares scores of users*/
+/* compares scores of users
+ * @param user1 passes in the score of the first user to compare
+ * @param user2 passes in the score of the second user to compare*/
 function compare(user1, user2){
     var data1 = user1.score;
     var data2 = user2.score;
@@ -185,7 +189,8 @@ function populateHighScores() {
         }
     }
 }
-/* Based on the operator that is chosen,returns the string of the math type */
+/* Based on the operator that is chosen,returns the string of the math type 
+ * @param type passes in the operator to convert into a string. */
 function convertMathType(type){
 	if (type == "+") { return "Addition";}
 	else if (type == "-") { return "Subtraction";}
