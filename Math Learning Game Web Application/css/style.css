@@ -7,6 +7,11 @@ body {
 	background-size: cover  
 }
 
+#MathStein-Logo {
+	max-width: 45%;
+	margin: 0 auto;
+}
+
 /* CSS for columns without gutters or space in between */
 .row.no-gutter {
   margin-left: 0;
@@ -588,3 +593,4 @@ table, th, td {
 #pop-up-buttons {
 	padding-top: 5px;
 }
+

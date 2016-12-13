@@ -10,6 +10,7 @@
 		<link href="css/bootstrap-grid-system-only.min.css" rel="stylesheet" type="text/css"> <!-- Bootstrap Grid System -->
 	    <link href="https://fonts.googleapis.com/css?family=Asap|Butterfly+Kids|Cedarville+Cursive|Rosario|Annie+Use+Your+Telescope|Cabin+Sketch|Calligraffitti|Caveat|Caveat+Brush" rel="stylesheet" type="text/css">  <!-- Google fonts -->
 		<meta name="description" content="This is the term project for the California State University Class CECS343 (Introduction to Software Engineering). This is a simple app game that consists of math questions that are to be answered in a particular amount of time. Users can select their level of difficulty on addition, subtraction, multiplication, and division. The game is oriented towards young children, so there are no algebra questions.">
+		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> <!-- Animate.CSS stylsheet for animations -->
 		<title>CECS343 Math Learning Game</title>
 	</head>
 	
@@ -106,14 +107,15 @@
 		<div class="container">
 			<section class="paper">
 				<article class="head">
-					<center><article contenteditable="false"><h3 id="welcome-Slogan">Welcome to <br/>Math Learning Game For Kids! :)</h3></article></center>
+					<center><article contenteditable="false" class="animated zoomIn"><h3 id="welcome-Slogan">Welcome to a <br/>Math Learning Game For Kids! :)</h3></article></center>
+					<img src="assets/images/MathStein-Logo.png" alt="MathStein Logo" class="img-responsive animated bounce" id="MathStein-Logo" />
 				</article> <!-- /.head -->
 
 				<p>&nbsp;</p> <!-- Breakspace -->
 				
 				<center><form class="row" onSubmit="return false">
 					<div class="col-md-12">
-					<label class="" for="nameInput">Enter your name, player! :</label>
+					<label for="nameInput">Enter your name, player! :</label>
 					<input id="nameInput" type="text" name="name" class="img-responsive" autocomplete="off" required/></div>
 				</form></center>
 				
